@@ -2,10 +2,15 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Login.css";
 export default function Login() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
+
   return (
     <div id="login" className="container-sm ">
       <h1 className="text-center">Welcome</h1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
           <Form.Control required type="email" placeholder="name@gmail.com" />

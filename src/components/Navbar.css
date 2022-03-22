@@ -2,11 +2,16 @@
   background: rgba(114, 127, 243, 0.9);
 }
 #nav {
+  display: flex;
   align-items: flex-end;
 }
 #navbar-brand {
   font-weight: bold;
-  color: black;
+  padding: 4px;
+  color: #3333ff;
+  background-color: whitesmoke;
+  border: solid #3399ff;
+  border-radius: 10px;
   text-decoration: none;
 }
 #navbar-brand:hover {
