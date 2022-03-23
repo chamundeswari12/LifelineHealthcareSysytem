@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Signup.css";
+
 export default function Signup() {
-  const initial = {
+  let initial = {
     // FirstName: "",
     // LastName: "",
     // UserName: "",
@@ -14,11 +15,12 @@ export default function Signup() {
     // gender: "",
     // phoneNumber: ""
   };
-  const [signupData, setSignupData] = useState({});
+  const [signupData, setSignupData] = useState({ initial });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setSignupData([...initial]);
+    console.log(initial);
+    setSignupData({ ...initial });
     console.log(signupData);
   };
   return (
@@ -26,9 +28,11 @@ export default function Signup() {
       <h1 className="text-center">Signup</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>First Name</Form.Label>
+          <Form.Label htmlFor="FirstName">First Name</Form.Label>
           <Form.Control
             name="FirstName"
+            id="FirstName"
+            // autocomplete="FirstName"
             required
             type="text"
             placeholder="First name"
@@ -37,9 +41,10 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label htmlFor="LastName">Last Name</Form.Label>
           <Form.Control
             name="LastName"
+            id="LastName"
             required
             type="text"
             placeholder="Last name"
@@ -48,9 +53,10 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
+          <Form.Label htmlFor="Username">Username</Form.Label>
           <Form.Control
             name="Username"
+            id="Username"
             required
             type="text"
             placeholder="Enter Username"
@@ -59,9 +65,11 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             name="email"
+            id="email"
+            autoComplete="email"
             required
             type="email"
             placeholder="name@gmail.com"
@@ -70,9 +78,10 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
+          <Form.Label htmlFor="Password">Password</Form.Label>
           <Form.Control
             name="Password"
+            id="Password"
             required
             type="password"
             placeholder="Enter your password"
@@ -83,9 +92,10 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label htmlFor="ConfirmPassword">Confirm Password</Form.Label>
           <Form.Control
             name="ConfirmPassword"
+            id="ConfirmPassword"
             required
             type="password"
             placeholder="Enter your password"
@@ -96,17 +106,18 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Date of Birth</Form.Label>
+          <Form.Label htmlFor="dateOfBirth">Date of Birth</Form.Label>
           <Form.Control
             name="dateOfBirth"
+            id="dateOfBirth"
             required
             type="date"
             value={initial.dateOfBirth}
             onChange={(e) => (initial.dateOfBirth = e.target.value)}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Gender </Form.Label>{" "}
+        <Form.Group className="mb-3" controlId="Gender">
+          <Form.Label>Gender : </Form.Label>{" "}
           <Form.Check
             required
             inline
@@ -130,9 +141,10 @@ export default function Signup() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label htmlFor="phone number">Phone Number</Form.Label>
           <Form.Control
             required
+            id="phone number"
             type="tel"
             pattern="[+91][0-9]{12}"
             name="phone number"
