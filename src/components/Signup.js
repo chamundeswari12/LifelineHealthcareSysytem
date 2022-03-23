@@ -3,12 +3,23 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Signup.css";
 export default function Signup() {
+  const initial = {
+    // FirstName: "",
+    // LastName: "",
+    // UserName: "",
+    // email: "",
+    // password: "",
+    // confirmPassword: "",
+    // dateOfBirth: "",
+    // gender: "",
+    // phoneNumber: ""
+  };
   const [signupData, setSignupData] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(e.target);
+    // setSignupData([...initial]);
+    console.log(signupData);
   };
   return (
     <div id="signup" className="container-sm ">
@@ -21,6 +32,8 @@ export default function Signup() {
             required
             type="text"
             placeholder="First name"
+            value={initial.FirstName}
+            onChange={(e) => (initial.FirstName = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -30,71 +43,102 @@ export default function Signup() {
             required
             type="text"
             placeholder="Last name"
+            value={initial.LastName}
+            onChange={(e) => (initial.LastName = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
           <Form.Control
-            // value={value.Username}
+            name="Username"
             required
             type="text"
             placeholder="Enter Username"
+            value={initial.UserName}
+            onChange={(e) => (initial.UserName = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>EmailId</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            // value={value.email}
+            name="email"
             required
             type="email"
             placeholder="name@gmail.com"
+            value={initial.email}
+            onChange={(e) => (initial.email = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            // value={value.Password}
+            name="Password"
             required
             type="password"
             placeholder="Enter your password"
             minLength="8"
-
-            // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
+            value={initial.password}
+            onChange={(e) => (initial.password = e.target.value)}
+            // pattern="[0-9a-zA-Z][!@#$%^&*-?].{8,14}"
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
-            // value={value.ConfirmPassword}
+            name="ConfirmPassword"
             required
             type="password"
             placeholder="Enter your password"
             minLength="8"
+            value={initial.confirmPassword}
+            onChange={(e) => (initial.confirmPassword = e.target.value)}
             // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control
-            // value={value.dateOfBirth}
+            name="dateOfBirth"
             required
             type="date"
-            name="dob"
+            value={initial.dateOfBirth}
+            onChange={(e) => (initial.dateOfBirth = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Gender </Form.Label>{" "}
-          <Form.Check required inline label="Male" name="Gender" type="radio" />
-          <Form.Check inline label="Female" name="Gender" type="radio" />
+          <Form.Check
+            required
+            inline
+            label="Male"
+            name="gender"
+            type="radio"
+            value={initial.gender}
+            onChange={(e) => {
+              initial.gender = "Male";
+            }}
+          />
+          <Form.Check
+            inline
+            label="Female"
+            name="gender"
+            type="radio"
+            value={initial.gender}
+            onChange={(e) => {
+              initial.gender = "Female";
+            }}
+          />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Phone Number</Form.Label>
           <Form.Control
-            // value={value.PhoneNumber}
             required
-            type="number"
-            minLength="10"
+            type="tel"
+            pattern="[+91][0-9]{12}"
             name="phone number"
+            placeholder="+919999999999"
+            value={initial.phoneNumber}
+            onChange={(e) => (initial.phoneNumber = e.target.value)}
           />
         </Form.Group>
         <Button type="submit">Signup</Button>{" "}

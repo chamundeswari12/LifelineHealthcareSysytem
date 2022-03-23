@@ -7,17 +7,17 @@ export default function NavBar() {
       <Container>
         <Navbar.Brand>
           <Link to="/" id="navbar-brand">
-            LHS
+            HS
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav id="nav">
-            <Link className="m-3" to="/" id="nav-link">
+            <Link className="m-2" to="/" id="nav-link">
               About
             </Link>
             {/* <Nav.Link id="nav-link">Medical Camps</Nav.Link> */}
-            <Link className="m-3" to="/login" id="nav-link">
+            <Link className="m-2" to="/login" id="nav-link">
               Login
             </Link>
             {/* <Nav.Link id="nav-link">Contact Us</Nav.Link> */}
