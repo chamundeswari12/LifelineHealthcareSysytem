@@ -1,4 +1,4 @@
-# medical-system-front-end
+# Medical System Front End
 
 How to run react project in VScode?
 
