@@ -11,7 +11,7 @@ Steps:
 
 
 4. Open terminal in vscode from topbar and type **npm install -g npm@8.5.5** and enter it will update the npm packages.
-5. In terminal type: **git clone https://github.com/varaprasadaluri54/LifelineHealthcareSysytem.git ** and click enter to downlaod the respojectory.
+5. In terminal type: **git clone https://github.com/varaprasadaluri54/LifelineHealthcareSysytem.git** and click enter to downlaod the respojectory.
 6. From topbar click on file -> Open folder -> browser the folder of project which is download form github and select that folder, it will open files like. 
 
 ![Screenshot 2022-03-24 013113](https://user-images.githubusercontent.com/38999815/159849000-da7a16c0-f53b-4517-a9df-c600bfa9fe42.png)
