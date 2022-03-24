@@ -1,8 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Signup.css";
-
+// import {  } from "react-router";
 export default function Signup() {
   let initial = {
     // FirstName: "",
@@ -15,13 +16,24 @@ export default function Signup() {
     // gender: "",
     // phoneNumber: ""
   };
+  // const history = useHistory();
   const [signupData, setSignupData] = useState({ initial });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(initial);
-    setSignupData({ ...initial });
-    console.log(signupData);
+    await axios
+      .post("http://localhost:2022/user/", initial)
+      .then((res) => {
+        console.log(res.data);
+        // history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // setSignupData({ ...initial });
+    // console.log(signupData);
   };
   return (
     <div id="signup" className="container-sm ">
