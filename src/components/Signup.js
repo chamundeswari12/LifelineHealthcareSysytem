@@ -1,81 +1,85 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
-// import {  } from "react-router";
+
 export default function Signup() {
+  let confirmPassword;
   let initial = {
-    // FirstName: "",
-    // LastName: "",
-    // UserName: "",
+    // firstName: "",
+    // lastName: "",
+    // username: "",
     // email: "",
     // password: "",
-    // confirmPassword: "",
-    // dateOfBirth: "",
+    // dob: "",
     // gender: "",
-    // phoneNumber: ""
+    // phoneNo: ""
   };
-  // const history = useHistory();
-  const [signupData, setSignupData] = useState({ initial });
- const navigate= useNavigate();
+  
+  const [signupData, setSignupData] = useState();
+  const [errors,setErrors]= useState();
+  const navigate= useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/");
+    if(initial.password && (initial.password!=confirmPassword)){
+     setErrors(1);
+     return
+    }
+    // alert("welcome");
+    
     console.log(initial);
     await axios
       .post("http://localhost:2022/user/", initial)
       .then((res) => {
         console.log(res.data);
-        alert()
-        navigator.push("/");
+        alert(`${res.data}`)
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
       });
 
-    // setSignupData({ ...initial });
-    // console.log(signupData);
+    
   };
   return (
     <div id="signup" className="container-sm ">
       <h1 className="text-center">Signup</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="FirstName">First Name</Form.Label>
+          <Form.Label htmlFor="firstName">First Name</Form.Label>
           <Form.Control
-            name="FirstName"
-            id="FirstName"
-            // autocomplete="FirstName"
+            name="firstName"
+            id="firstName"
             required
             type="text"
             placeholder="First name"
-            value={initial.FirstName}
-            onChange={(e) => (initial.FirstName = e.target.value)}
+            value={initial.firstName}
+            onChange={(e) => (initial.firstName = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="LastName">Last Name</Form.Label>
+          <Form.Label htmlFor="lastName">Last Name</Form.Label>
           <Form.Control
-            name="LastName"
-            id="LastName"
+            name="lastName"
+            id="lastName"
             required
             type="text"
             placeholder="Last name"
-            value={initial.LastName}
-            onChange={(e) => (initial.LastName = e.target.value)}
+            value={initial.lastName}
+            onChange={(e) => (initial.lastName = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="Username">Username</Form.Label>
+          <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
-            name="Username"
-            id="Username"
+            name="username"
+            id="username"
             required
             type="text"
             placeholder="Enter Username"
-            value={initial.UserName}
-            onChange={(e) => (initial.UserName = e.target.value)}
+            value={initial.username}
+            onChange={(e) => (initial.username = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -91,11 +95,12 @@ export default function Signup() {
             onChange={(e) => (initial.email = e.target.value)}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="Password">Password</Form.Label>
+        <Row >
+        <Form.Group as={Col} className="mb-2">
+          <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
-            name="Password"
-            id="Password"
+            name="password"
+            id="password"
             required
             type="password"
             placeholder="Enter your password"
@@ -105,8 +110,9 @@ export default function Signup() {
             // pattern="[0-9a-zA-Z][!@#$%^&*-?].{8,14}"
           />
         </Form.Group>
-        <Form.Group className="mb-3">
+        <Form.Group as={Col} className="mb-2">
           <Form.Label htmlFor="ConfirmPassword">Confirm Password</Form.Label>
+          
           <Form.Control
             name="ConfirmPassword"
             id="ConfirmPassword"
@@ -114,11 +120,14 @@ export default function Signup() {
             type="password"
             placeholder="Enter your password"
             minLength="8"
-            value={initial.confirmPassword}
-            onChange={(e) => (initial.confirmPassword = e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => (confirmPassword = e.target.value)}
+            isInvalid={errors}
             // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
           />
-        </Form.Group>
+          {errors && <p className="text-danger mb-1">Password do not match</p>}
+          </Form.Group>
+          </Row>
         <Form.Group className="mb-3">
           <Form.Label htmlFor="dateOfBirth">Date of Birth</Form.Label>
           <Form.Control
@@ -126,8 +135,8 @@ export default function Signup() {
             id="dateOfBirth"
             required
             type="date"
-            value={initial.dateOfBirth}
-            onChange={(e) => (initial.dateOfBirth = e.target.value)}
+            value={initial.dob}
+            onChange={(e) => (initial.dob = e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="Gender">
@@ -164,8 +173,8 @@ export default function Signup() {
             message="please enter correct number"
             name="phone number"
             placeholder="9999999999"
-            value={initial.phoneNumber}
-            onChange={(e) => (initial.phoneNumber = e.target.value)}
+            value={initial.phoneNo}
+            onChange={(e) => (initial.phoneNo = e.target.value)}
           />
         </Form.Group>
         <Button type="submit">Signup</Button>{" "}

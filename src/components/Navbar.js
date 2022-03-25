@@ -7,7 +7,7 @@ export default function NavBar() {
       <Container>
         <Navbar.Brand>
           <Link to="/" id="navbar-brand">
-            HS
+            LHS
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
