@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
 // import {  } from "react-router";
 export default function Signup() {
@@ -18,15 +18,17 @@ export default function Signup() {
   };
   // const history = useHistory();
   const [signupData, setSignupData] = useState({ initial });
-
+ const navigate= useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    navigate("/");
     console.log(initial);
     await axios
       .post("http://localhost:2022/user/", initial)
       .then((res) => {
         console.log(res.data);
-        // history.push("/");
+        alert()
+        navigator.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -158,9 +160,10 @@ export default function Signup() {
             required
             id="phone number"
             type="tel"
-            pattern="[+91][0-9]{12}"
+            pattern="[0-9]{10}"
+            message="please enter correct number"
             name="phone number"
-            placeholder="+919999999999"
+            placeholder="9999999999"
             value={initial.phoneNumber}
             onChange={(e) => (initial.phoneNumber = e.target.value)}
           />
@@ -173,3 +176,5 @@ export default function Signup() {
     </div>
   );
 }
+// https://stackoverflow.com/questions/67932967/form-validation-in-react-bootstrap-with-different-validation-conditions-for-each
+// https://www.brainstormcreative.co.uk/react-js/react-bootstrap-form-part-2-validation-and-errors/
