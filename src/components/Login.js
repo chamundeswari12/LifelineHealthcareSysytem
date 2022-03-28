@@ -1,10 +1,33 @@
+import axios from "axios";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {useNavigate, Link } from "react-router-dom";
 import "./Login.css";
+
+
 export default function Login() {
-  const handleSubmit = (e) => {
+  const navigate= useNavigate();
+  const [username,setUsername]= useState("");
+  const [password,setPassword]= useState("");
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(e.target);
+    console.log(username,password);
+
+   const login={"username":username,"password":password};
+   console.log(login)
+    await axios
+      .post("http://localhost:2022/user/", login)
+      .then((res) => {
+        console.log(res.data);
+        alert(`Welcome ${res.data.firstName}`)
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
   };
 
   return (
@@ -13,13 +36,18 @@ export default function Login() {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
-          <Form.Control required type="email" placeholder="name@gmail.com" />
+          <Form.Control required type="email"
+          value={username}
+          onChange={(e) => (setUsername( e.target.value))}
+           placeholder="name@gmail.com" />
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>password</Form.Label>
           <Form.Control
             required
             type="password"
+            value={password}
+            onChange={(e) => (setPassword( e.target.value))}
             placeholder="enter your password"
             minLength="8"
             // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
@@ -33,7 +61,7 @@ export default function Login() {
           Signup
         </Button> */}
         <br />
-        <Link to="">forgot</Link>
+        <Link to="">Forgot?</Link>
         {" / "} <Link to="/signup">Signup</Link>
       </Form>
     </div>

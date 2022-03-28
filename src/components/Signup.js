@@ -33,7 +33,7 @@ export default function Signup() {
       .post("http://localhost:2022/user/", initial)
       .then((res) => {
         console.log(res.data);
-        alert(`${res.data}`)
+        alert(`Welcome ${res.data.firstName}`)
         navigate("/");
       })
       .catch((err) => {
