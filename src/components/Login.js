@@ -36,7 +36,7 @@ export default function Login() {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
-          <Form.Control required type="email"
+          <Form.Control required type="text"
           value={username}
           onChange={(e) => (setUsername( e.target.value))}
            placeholder="name@gmail.com" />
