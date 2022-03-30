@@ -2,6 +2,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 export default function NavBar() {
+
   return (
     <Navbar className="color-nav" expand="lg">
       <Container>
@@ -10,8 +11,8 @@ export default function NavBar() {
             LHS
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav"> */}
           <Nav id="nav">
             <Link className="m-2" to="/" id="nav-link">
               About
@@ -22,7 +23,7 @@ export default function NavBar() {
             </Link>
             {/* <Nav.Link id="nav-link">Contact Us</Nav.Link> */}
           </Nav>
-        </Navbar.Collapse>
+        {/* </Navbar.Collapse> */}
       </Container>
     </Navbar>
   );
