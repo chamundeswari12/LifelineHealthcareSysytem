@@ -22,6 +22,7 @@ export default function Login() {
    .then((res) => {
         console.log(res);
         localStorage.setItem('Acess_Token',JSON.stringify(res.data.token));
+        localStorage.setItem('user',JSON.stringify(res.data.username));
         alert(`Welcome ${res.data.username}`)
         navigate("/");
       })
