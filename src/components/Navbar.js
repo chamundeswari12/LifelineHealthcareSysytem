@@ -7,7 +7,7 @@ export default function NavBar() {
 
  const handlefunction=(e)=>{
   e.preventDefault();
-  localStorage.removeItem(Acess_Token);
+  localStorage.removeItem('Acess_Token');
  }
   return (
     <Navbar className="color-nav" expand="lg">
