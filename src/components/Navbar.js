@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -9,6 +10,10 @@ export default function NavBar() {
   e.preventDefault();
   localStorage.removeItem('Acess_Token');
  }
+ 
+ useEffect(()=>{
+
+ },[token]);
   return (
     <Navbar className="color-nav" expand="lg">
       <Container>
