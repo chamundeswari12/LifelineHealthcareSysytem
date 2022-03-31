@@ -3,7 +3,7 @@ import axios from "axios"
 const BASE_URL = "http://localhost:2022";
 
 //get
-
+const ALL_USER_API=`${BASE_URL}/user/getAllUsers`;
 //post
 const LOGIN_API_URL=`${BASE_URL}/generate-token`;
 const REGISTER_API_URL=`${BASE_URL}/user/`;

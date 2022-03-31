@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import ApiService from "../Services/ApiService";
+import ApiService from "../../Services/ApiService";
+
 // import { login1 } from "../Services/ApiService";
 
 export default function Login() {
+  
   const navigate= useNavigate();
   const [username,setUsername]= useState("");
   const [password,setPassword]= useState("");
@@ -25,7 +27,7 @@ export default function Login() {
         localStorage.setItem('user',JSON.stringify(res.data.username));
         const user = localStorage.getItem('user')
         alert(`Welcome ${user}`)
-        navigate("/");
+        navigate("/user");
       })
       .catch((error) => {
         console.log(error);
@@ -65,7 +67,7 @@ export default function Login() {
             value={password}
             onChange={(e) => (setPassword( e.target.value))}
             placeholder="enter your password"
-            minLength="8"
+            // minLength="8"
             // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
           />
         </Form.Group>

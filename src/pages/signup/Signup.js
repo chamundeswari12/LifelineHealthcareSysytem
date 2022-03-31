@@ -2,10 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import ApiService from "../Services/ApiService";
+
+import ApiService from "../../Services/ApiService";
 import "./Signup.css";
 
 export default function Signup() {
+
   let confirmPassword;
   let initial = {
     // firstName: "",
