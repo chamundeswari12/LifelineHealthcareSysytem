@@ -23,11 +23,14 @@ export default function Login() {
         console.log(res);
         localStorage.setItem('Acess_Token',JSON.stringify(res.data.token));
         localStorage.setItem('user',JSON.stringify(res.data.username));
-        alert(`Welcome ${res.data.username}`)
+        const user = localStorage.getItem('user')
+        alert(`Welcome ${user}`)
         navigate("/");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        console.log(error.code)
+
       });
     // await axios
     //   .post("http://localhost:2022/user/", login)

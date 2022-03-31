@@ -1,12 +1,12 @@
 import axios from "axios"
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:2022";
 
 //get
 
 //post
-const LOGIN_API_URL=`${BASE_URL}/login`;
-const REGISTER_API_URL=`${BASE_URL}/user`;
+const LOGIN_API_URL=`${BASE_URL}/generate-token`;
+const REGISTER_API_URL=`${BASE_URL}/user/`;
 
 //put
 
