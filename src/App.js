@@ -5,35 +5,43 @@ import NavBar from "./components/navbar/Navbar";
 import Signup from "./pages/signup/Signup";
 import "./styles.css";
 import Dashboard from "./pages/dashboard/Dashboard";
+import { useEffect, useState } from "react";
+// import { getCurrentUser } from "../util/APIUtils";
+// import { ACCESS_TOKEN } from "../constants";
 
 export default function App() {
+  // currentUser: null,
+  // isAuthenticated: false,
+  // isLoading: true
+  // let data = JSON.parse(localStorage.getItem("Acess_Token")) ? true : false;
+
+  // const { isLoggedIn, setIsLoggedIn } = useState(true);
+  // let isLoggedIn = true;
+  // console.log(isLoggedIn);
+  // const userAuthentication = (data) => {
+  //   if (data == 1) {
+  //     console.log("Logout called");
+  //     localStorage.removeItem("Acess_Token");
+  //     isLoggedIn = false;
+  //   } else {
+  //     console.log("Login called");
+  //     isLoggedIn = true;
+  //   }
+  // };
+
   return (
-    <div className="App">
-        <NavBar />
-      {/* <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route path="new" element={<New />} />
-            </Route>
-            <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
-              <Route path="new" element={<New />} />
-            </Route>
-          </Route> */}
+    <>
+      <NavBar />
       <Routes>
         <Route path="/">
-          <Route index element={<Home/>}/>
+          <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="user">
-            <Route index element={<Dashboard/>}/>
-            </Route>
-          </Route> 
+            <Route index element={<Dashboard />} />
+          </Route>
+        </Route>
       </Routes>
-    </div>
+    </>
   );
 }

@@ -1,12 +1,12 @@
 import './admin.css'
 
 
-export default function Admin(){
+export default function Admin() {
 
 
-    return(
+    return (
         <div className='admin'>
-            <h1>welcome admin</h1>
+            <h1>Welcome admin</h1>
         </div>
     )
 }
