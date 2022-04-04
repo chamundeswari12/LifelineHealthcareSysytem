@@ -7,7 +7,6 @@ export default function Dashboard() {
   // const [user,setUser]= useState(localStorage.getItem('user'));
   const [token, setToken] = useState(localStorage.getItem("Acess_Token"));
   // console.log(user);
-
   return (
     <>
       <NavBar />
