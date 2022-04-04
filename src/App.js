@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import NavBar from "./components/navbar/Navbar";
+
 import Signup from "./pages/signup/Signup";
 import "./styles.css";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -9,7 +9,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 export default function App() {
   return (
     <div className="App">
-        <NavBar />
       {/* <Route path="/">
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
@@ -26,13 +25,13 @@ export default function App() {
           </Route> */}
       <Routes>
         <Route path="/">
-          <Route index element={<Home/>}/>
+          <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="user">
-            <Route index element={<Dashboard/>}/>
-            </Route>
-          </Route> 
+            <Route index element={<Dashboard />} />
+          </Route>
+        </Route>
       </Routes>
     </div>
   );
