@@ -1,12 +1,9 @@
-import './doctor.css'
+import "./doctor.css";
 
-
-export default function Doctor(){
-
-
-    return(
-        <div className='doctor'>
-            <h1>Welcome doctor</h1>
-        </div>
-    )
+export default function Doctor() {
+  return (
+    <div className="doctor">
+      <h1>Doctor dashboard</h1>
+    </div>
+  );
 }

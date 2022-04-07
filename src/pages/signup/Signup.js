@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
@@ -20,12 +19,12 @@ export default function Signup() {
     // phoneNo: ""
   };
 
-  const [signupData, setSignupData] = useState();
+  // const [signupData, setSignupData] = useState();
   const [errors, setErrors] = useState();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (initial.password && initial.password != confirmPassword) {
+    if (initial.password && initial.password !== confirmPassword) {
       setErrors(1);
       return;
     }
@@ -47,30 +46,32 @@ export default function Signup() {
       <div id="signup" className="container-sm ">
         <h1 className="title text-center">Signup</h1>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="firstName">First Name</Form.Label>
-            <Form.Control
-              name="firstName"
-              id="firstName"
-              required
-              type="text"
-              placeholder="First name"
-              value={initial.firstName}
-              onChange={(e) => (initial.firstName = e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="lastName">Last Name</Form.Label>
-            <Form.Control
-              name="lastName"
-              id="lastName"
-              required
-              type="text"
-              placeholder="Last name"
-              value={initial.lastName}
-              onChange={(e) => (initial.lastName = e.target.value)}
-            />
-          </Form.Group>
+          <Row>
+            <Form.Group as={Col} className="mb-3">
+              <Form.Label htmlFor="firstName">First Name</Form.Label>
+              <Form.Control
+                name="firstName"
+                id="firstName"
+                required
+                type="text"
+                placeholder="First name"
+                value={initial.firstName}
+                onChange={(e) => (initial.firstName = e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group as={Col} className="mb-3">
+              <Form.Label htmlFor="lastName">Last Name</Form.Label>
+              <Form.Control
+                name="lastName"
+                id="lastName"
+                required
+                type="text"
+                placeholder="Last name"
+                value={initial.lastName}
+                onChange={(e) => (initial.lastName = e.target.value)}
+              />
+            </Form.Group>
+          </Row>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="username">Username</Form.Label>
             <Form.Control

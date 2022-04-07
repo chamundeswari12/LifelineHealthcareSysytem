@@ -1,11 +1,10 @@
-import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import ApiService from "../../Services/ApiService";
 import NavBar from "../../components/navbar/Navbar";
-
+import jwt from "jwt-decode";
 // import { login1 } from "../Services/ApiService";
 
 export default function Login() {
@@ -23,9 +22,11 @@ export default function Login() {
       // login1(loginData)
       .then((res) => {
         console.log(res);
-        localStorage.setItem("Acess_Token", JSON.stringify(res.data.token));
-        // localStorage.setItem('user',JSON.stringify(res.data.username));
+        localStorage.setItem("Acess_Token", res.data.token);
         // const user = localStorage.getItem('user')
+        const user = jwt(res.data.token);
+        console.log(user);
+        localStorage.setItem("user", user.sub);
         setErrors(false);
         alert(`Login Successful `);
         navigate("/user");
@@ -53,11 +54,11 @@ export default function Login() {
               placeholder="name@gmail.com"
             />
           </Form.Group>
-          {errors && (
+          {/* {errors && (
             <p className="text-danger mb-1">
               The provided credentials do not match our records.
             </p>
-          )}
+          )} */}
           <Form.Group className="mb-3">
             <Form.Label>password</Form.Label>
             <Form.Control
@@ -78,7 +79,7 @@ export default function Login() {
           Signup
         </Button> */}
           <br />
-          <Link to="">Forgot?</Link>
+          <Link to="/forgotPassword">Forgot?</Link>
           {" / "} <Link to="/signup">Signup</Link>
         </Form>
       </div>
