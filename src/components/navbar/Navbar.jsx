@@ -30,7 +30,7 @@ export default function NavBar() {
             </Link>
           </Nav>
           <Nav id="nav">
-            <Link className="m-2" to="/" id="nav-link">
+            <Link className="m-2" to="/aboutUs" id="nav-link">
               About Us
             </Link>
             {/* <Nav.Link id="nav-link">Medical Camps</Nav.Link> */}
@@ -54,7 +54,9 @@ export default function NavBar() {
                 id="dropdown-basic dropdownMenu dropdown-autoclose-true "
               >
                 {/* <img src={profilepic} alt="profile" className="img" /> */}
-                <p className="username"> {user}</p>
+                <p id="nav-link" className="username">
+                  {user}
+                </p>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {/* <Dropdown.Item href="#/action-1">Profile</Dropdown.Item> */}

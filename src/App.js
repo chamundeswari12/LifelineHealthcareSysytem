@@ -8,6 +8,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { ForgotPassword } from "./pages/forgotPassword/ForgotPassword";
 import { Profile } from "./components/profile/Profile";
 import { Settings } from "./pages/settings/Settings";
+import { AboutUs } from "./pages/aboutUs/AboutUs";
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path="aboutUs" element={<AboutUs />} />
         </Route>
       </Routes>
     </div>

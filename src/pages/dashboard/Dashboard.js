@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Admin from "../../components/admin/Admin";
 
 import NavBar from "../../components/navbar/Navbar";
 import User from "../../components/user/User";
@@ -34,7 +35,7 @@ export default function Dashboard() {
         ) : role === "USER" ? (
           <User />
         ) : (
-          "hi"
+          <h1>Dashboard</h1>
         )}
       </div>
     </>
