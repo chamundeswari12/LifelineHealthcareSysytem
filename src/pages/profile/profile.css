@@ -1,0 +1,70 @@
+.profile {
+  font-size: 15px;
+  align-items: center;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.name {
+  font-size: 25px;
+  font-weight: 400;
+  color: rgba(114, 127, 243, 0.9);
+}
+.role {
+  font-size: 15px;
+  font-weight: 400;
+  color: green;
+}
+.titleName {
+  font-size: 15px;
+  color: black;
+  font-weight: bold;
+}
+.titleValue {
+  color: rgb(101, 63, 241);
+  font-size: 15px;
+  font-weight: 500;
+}
+img {
+  max-width: 250px;
+  /* margin: 100px; */
+  max-height: 250px;
+  margin: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.edit-button {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  margin-left: auto;
+  /* background: rgba(114, 127, 243, 0.9); */
+  flex-direction: row-reverse;
+  object-fit: cover;
+}
+.edit-button:hover {
+  color: goldenrod;
+}
+@media screen and (min-width: 720px) {
+  .profile {
+    align-items: center;
+    width: 900px;
+  }
+}
+@media screen and (max-width: 720px) {
+  .profile {
+    align-items: center;
+  }
+  .profiledata {
+    display: flex;
+    flex-direction: column;
+  }
+  /* .edit-button {
+    font-size: 10px;
+  } */
+}

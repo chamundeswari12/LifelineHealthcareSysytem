@@ -1,41 +1,38 @@
-import "./forgotPassword.css"
+import "./forgotPassword.css";
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../../components/navbar/Navbar";
 
-
 export const ForgotPassword = () => {
+  const [mail, setMail] = useState("");
 
-    const [mail,setMail]= useState("");
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
   return (
     <>
-    <NavBar />
-    <div id="forgotPassword" className="container-sm ">
-      <h1 className="title text-center">Welcome</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Please enter mail id</Form.Label>
-          <Form.Control
-            required
-            type="mail"
-            value={mail}
-            // isInvalid={errors}
-            onChange={(e) => setMail(e.target.value)}
-            placeholder="name@gmail.com"
-          />
-        </Form.Group>
-        {/* {errors && (
+      <NavBar />
+      <div id="forgotPassword" className="container-sm ">
+        <h1 className="title text-center">Welcome</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Please enter mail id</Form.Label>
+            <Form.Control
+              required
+              type="mail"
+              value={mail}
+              // isInvalid={errors}
+              onChange={(e) => setMail(e.target.value)}
+              placeholder="name@gmail.com"
+            />
+          </Form.Group>
+          {/* {errors && (
           <p className="text-danger mb-1">
             The provided credentials do not match our records.
           </p>
         )} */}
-       <Row>
+          <Row>
             <Form.Group as={Col} className="mb-2">
               <Form.Label htmlFor="password">Password</Form.Label>
               <Form.Control
@@ -72,21 +69,18 @@ export const ForgotPassword = () => {
               )} */}
             </Form.Group>
           </Row>
-
-
-
-        <Button type="submit" variant="success">
-          Submit
-        </Button>
-        {"  "}
-        <Button as={Link} to="/">
+          <Button type="submit" variant="success">
+            Submit
+          </Button>
+          {"  "}
+          <Button as={Link} to="/">
             Cancel
           </Button>
-        <br />
-        <Link to="/login">login</Link>
-        {" / "} <Link to="/signup">Signup</Link>
-      </Form>
-    </div>
-  </>
-  )
-}
+          <br />
+          <Link to="/login">login</Link>
+          {" / "} <Link to="/signup">Signup</Link>
+        </Form>
+      </div>
+    </>
+  );
+};

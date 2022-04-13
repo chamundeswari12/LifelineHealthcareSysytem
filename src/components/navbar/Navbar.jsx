@@ -3,6 +3,8 @@ import { Navbar, Container, Nav, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import profilepic from "../../images/profilepic.svg";
+
+
 export default function NavBar() {
   const [token, setToken] = useState(localStorage.getItem("Acess_Token"));
   // console.log(`token=${token}`);

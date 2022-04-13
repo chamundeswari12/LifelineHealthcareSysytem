@@ -54,11 +54,11 @@ export default function Login() {
               placeholder="name@gmail.com"
             />
           </Form.Group>
-          {/* {errors && (
+          {errors && (
             <p className="text-danger mb-1">
               The provided credentials do not match our records.
             </p>
-          )} */}
+          )}
           <Form.Group className="mb-3">
             <Form.Label>password</Form.Label>
             <Form.Control

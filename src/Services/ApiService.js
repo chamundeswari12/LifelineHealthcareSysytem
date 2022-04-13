@@ -12,7 +12,8 @@ const LOGIN_API_URL = `${BASE_URL}/auth/login`;
 const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
 
 //put
-
+const CHANGE_PASSWORD = `${BASE_URL}/user/changePassword`;
+const EDIT_PROFILE = `${BASE_URL}/user/profileInfoUpdate`;
 //delete
 
 export default new (class ApiService {
@@ -36,8 +37,27 @@ export default new (class ApiService {
     };
     return axios.get(CURRENT_USER_API, config);
   }
-})();
 
-// export function login1  (data){
-//     return axios.post(LOGIN_API_URL,data);
-// }
+  changePassword(data) {
+    const token = localStorage.getItem("Acess_Token");
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return axios.put(CHANGE_PASSWORD, config, data);
+  }
+  editProfile(data) {
+    const token = localStorage.getItem("Acess_Token");
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return axios.put(EDIT_PROFILE, config, data);
+  }
+})();
