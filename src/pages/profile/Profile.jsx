@@ -1,48 +1,35 @@
 import "./profile.css";
-import Tabs from "react-bootstrap/Tabs";
+
 import profilepic from "../../images/profilepic.svg";
-import {
-  Button,
-  Col,
-  Container,
-  InputGroup,
-  Row,
-  Spinner,
-  Tab,
-} from "react-bootstrap";
-import NavBar from "../../components/navbar/Navbar";
-import ApiService from "../../Services/ApiService";
+import EditIcon from "@mui/icons-material/Edit";
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import EditIcon from "@mui/icons-material/Edit";
+import Tabs from "react-bootstrap/Tabs";
+import { Button, Col, Container, Row, Tab } from "react-bootstrap";
+
+import ApiService from "../../services/ApiService";
+import SpinnerLoading from "../../components/spinner/Spinner";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(localStorage.getItem("Acess_Token"));
-  const user = localStorage.getItem("user");
-  const [data, setData] = useState([]);
-  const [role, setRole] = useState("");
-  // console.log(user);
+  const [data, setData] = useState("");
   useEffect(() => {
     ApiService.currentUser()
       .then((res) => {
         setData(res.data);
-        setRole(res.data.authorities[0].authority);
+        console.log(res.data);
         setIsLoading(false);
-        // console.log(data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [role]);
+  }, []);
   return (
     <>
-      <NavBar />
       <Container className="profile">
         {isLoading ? (
-          <Spinner animation="border" role="status" variant="primary">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <SpinnerLoading />
         ) : (
           <form>
             <Row className="profiledata">
@@ -54,7 +41,6 @@ export default function Profile() {
                 />
               </Col>
               <Col>
-                {/* <div className="col"> */}
                 <Button
                   as={Link}
                   to="editprofile"
@@ -69,7 +55,7 @@ export default function Profile() {
                     <h5 className="name">
                       {data.firstName} {data.lastName}
                     </h5>
-                    <h5 className="role">{role}</h5>
+                    <h5 className="role">{data.authorities[0].authority}</h5>
                     <p className="profile-rating mt-3 mb-3">
                       {/* Rating:<span>1/10</span> */}
                     </p>
@@ -79,6 +65,14 @@ export default function Profile() {
                       className="mb-3"
                     >
                       <Tab eventKey="about-us" title="About">
+                        <Row>
+                          <Col>
+                            <p className="titleName">Patient ID</p>
+                          </Col>
+                          <Col>
+                            <p className="titleValue">{data.id}</p>
+                          </Col>
+                        </Row>
                         <Row>
                           <Col>
                             <p className="titleName">First name</p>
@@ -146,10 +140,6 @@ export default function Profile() {
                               test doctor appointment at 10
                             </p>
                           </Col>
-
-                          {/* <div className="col-md-6">
-                    <p>test doctor appointment at 10</p>
-                  </div> */}
                         </Row>
                       </Tab>
                     </Tabs>

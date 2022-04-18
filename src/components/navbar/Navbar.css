@@ -1,7 +1,7 @@
 .color-nav {
   background: rgba(114, 127, 243, 0.9);
   display: flex;
-  /* justify-content: space-between; */
+
 }
 /* .img {
   width: 25px;
@@ -11,13 +11,14 @@
   margin-top: 0;
   margin-bottom: 0;
   font-weight: bold;
+  /* border-radius: 50%; */
 }
 .toggle {
   display: flex;
   border: transparent;
   background: transparent;
 }
-.toggle:hover {
+.toggle:hover  {
   background: transparent;
 }
 #nav {

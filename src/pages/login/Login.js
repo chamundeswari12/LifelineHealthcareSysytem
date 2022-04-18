@@ -1,11 +1,12 @@
+import "./Login.css";
+
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import "./Login.css";
-import ApiService from "../../Services/ApiService";
-import NavBar from "../../components/navbar/Navbar";
 import jwt from "jwt-decode";
-// import { login1 } from "../Services/ApiService";
+
+import ApiService from "../../services/ApiService";
+import NavBar from "../../components/navbar/Navbar";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,20 +14,20 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
+
     const loginData = { username: username, password: password };
-    console.log(loginData);
+
     ApiService.login(loginData)
-      // login1(loginData)
+
       .then((res) => {
         console.log(res);
-        localStorage.setItem("Acess_Token", res.data.token);
+        localStorage.setItem("Access_Token", res.data.token);
         // const user = localStorage.getItem('user')
-        const user = jwt(res.data.token);
-        console.log(user);
-        localStorage.setItem("user", user.sub);
+        const username = jwt(res.data.token).sub;
+        console.log(username);
+        localStorage.setItem("username", username);
         setErrors(false);
         alert(`Login Successful `);
         navigate("/user");
@@ -71,6 +72,7 @@ export default function Login() {
               // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
             />
           </Form.Group>
+
           <Button type="submit" variant="success">
             Login
           </Button>
@@ -79,8 +81,13 @@ export default function Login() {
           Signup
         </Button> */}
           <br />
-          <Link to="/forgotPassword">Forgot?</Link>
-          {" / "} <Link to="/signup">Signup</Link>
+          <Link className="text-center " to="/forgotPassword">
+            Forget Password?
+          </Link>
+          {" / "}
+          <Link className="text-center" to="/signup">
+            New User? Signup
+          </Link>
         </Form>
       </div>
     </>

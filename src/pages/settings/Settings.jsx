@@ -1,25 +1,26 @@
+import "./settings.css";
+
 import React, { useState } from "react";
 import { Container, Form, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import NavBar from "../../components/navbar/Navbar";
-import ApiService from "../../Services/ApiService";
-import "./settings.css";
+import { Link, useNavigate } from "react-router-dom";
+
+import ApiService from "../../services/ApiService";
+
 export const Settings = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ oldPassword: "", newPassword: "" });
   const [errors, setErrors] = useState(false);
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
-
     ApiService.changePassword(data)
       .then((res) => {
         console.log(res.data);
@@ -35,7 +36,6 @@ export const Settings = () => {
 
   return (
     <>
-      <NavBar />
       <Container className="settings">
         <h1 className="title">Change Password</h1>
         <Form onSubmit={handleSubmit}>

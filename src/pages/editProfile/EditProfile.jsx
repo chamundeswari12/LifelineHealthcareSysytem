@@ -1,19 +1,22 @@
-import NavBar from "../../components/navbar/Navbar";
 import "./editProfile.css";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+
+import { Button, Form, Row, Col, Container } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import ApiService from "../../Services/ApiService";
-import { Button, Form, Row, Col, Container, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import ApiService from "../../services/ApiService";
+import SpinnerLoading from "../../components/spinner/Spinner";
 
 export default function EditProfile() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [file, setFile] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -28,7 +31,7 @@ export default function EditProfile() {
       .then((res) => {
         console.log(res.data);
         alert("Profile edit successfully!");
-        navigate("/");
+        navigate("/user/profile");
       })
       .catch((error) => {
         console.log(error);
@@ -46,15 +49,11 @@ export default function EditProfile() {
       });
   }, []);
 
-  // console.log(file);
   return (
     <>
-      <NavBar />
       <Container className="profile">
         {isLoading ? (
-          <Spinner animation="border" role="status" variant="primary">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <SpinnerLoading />
         ) : (
           <>
             <div className="top">
@@ -125,11 +124,21 @@ export default function EditProfile() {
                     <Form.Label htmlFor="phoneNo">Phone Number</Form.Label>
                     <Form.Control
                       type="number"
-                      minLength={10}
                       maxLength={10}
                       id="phoneNo"
                       name="phoneNo"
                       defaultValue={data.phoneNo}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="dob">Date of Birth</Form.Label>
+                    <Form.Control
+                      name="dob"
+                      id="dob"
+                      required
+                      type="date"
+                      value={data.dob}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -158,15 +167,10 @@ export default function EditProfile() {
                     Update
                   </Button>
                   {"  "}
-                  <Button as={Link} to="/">
+                  <Button as={Link} to="/user/profile">
                     Cancel
                   </Button>
                 </Form>
-
-                {/* <div className="formInput">
-                    <label>Password</label>
-                    <input type="password" />
-                  </div> */}
               </Col>
             </Row>
           </>

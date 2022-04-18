@@ -15,6 +15,17 @@ const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
 const CHANGE_PASSWORD = `${BASE_URL}/user/changePassword`;
 const EDIT_PROFILE = `${BASE_URL}/user/profileInfoUpdate`;
 //delete
+export function auth() {
+  const token = localStorage.getItem("Access_Token");
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  return config;
+}
 
 export default new (class ApiService {
   login(data) {
@@ -26,38 +37,13 @@ export default new (class ApiService {
   }
 
   currentUser() {
-    //Header
-    const token = localStorage.getItem("Acess_Token");
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    return axios.get(CURRENT_USER_API, config);
+    return axios.get(CURRENT_USER_API, auth());
   }
 
   changePassword(data) {
-    const token = localStorage.getItem("Acess_Token");
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    return axios.put(CHANGE_PASSWORD, config, data);
+    return axios.put(CHANGE_PASSWORD, data, auth());
   }
   editProfile(data) {
-    const token = localStorage.getItem("Acess_Token");
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    return axios.put(EDIT_PROFILE, config, data);
+    return axios.put(EDIT_PROFILE, data, auth());
   }
 })();

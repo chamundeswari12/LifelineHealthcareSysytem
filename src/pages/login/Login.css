@@ -4,8 +4,14 @@
   padding: 50px 50px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-.title{
+.title {
   color: rgba(114, 127, 243, 0.9);
+}
+.pageName {
+  text-decoration: none;
+  align-items: center;
+  /* display: flex;
+  flex-direction: column; */
 }
 @media screen and (min-width: 720px) {
   #login {

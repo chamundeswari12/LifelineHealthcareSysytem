@@ -1,18 +1,17 @@
 import "./forgotPassword.css";
+
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
-import NavBar from "../../components/navbar/Navbar";
 
 export const ForgotPassword = () => {
   const [mail, setMail] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
   };
   return (
     <>
-      <NavBar />
       <div id="forgotPassword" className="container-sm ">
         <h1 className="title text-center">Welcome</h1>
         <Form onSubmit={handleSubmit}>

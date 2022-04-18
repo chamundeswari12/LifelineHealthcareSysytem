@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./Navbar.css";
 import profilepic from "../../images/profilepic.svg";
 
-
 export default function NavBar() {
-  const [token, setToken] = useState(localStorage.getItem("Acess_Token"));
-  // console.log(`token=${token}`);
-  const user = localStorage.getItem("user");
+  const [token, setToken] = useState(localStorage.getItem("Access_Token"));
+  const username = localStorage.getItem("username");
   const handlefunction = () => {
-    localStorage.removeItem("Acess_Token");
-    localStorage.removeItem("user");
+    localStorage.clear();
     alert(`Logout Successful`);
-    setToken((data) => (data = localStorage.getItem("Acess_Token")));
+    setToken((data) => (data = localStorage.getItem("Access_Token")));
   };
 
   return (
@@ -35,7 +33,7 @@ export default function NavBar() {
             <Link className="m-2" to="/aboutUs" id="nav-link">
               About Us
             </Link>
-            {/* <Nav.Link id="nav-link">Medical Camps</Nav.Link> */}
+
             {(token == null || token == undefined) && (
               <Link className="m-2" to="/login" id="nav-link">
                 Login
@@ -57,12 +55,11 @@ export default function NavBar() {
               >
                 {/* <img src={profilepic} alt="profile" className="img" /> */}
                 <p id="nav-link" className="username">
-                  {user}
+                  {username}
                 </p>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {/* <Dropdown.Item href="#/action-1">Profile</Dropdown.Item> */}
-                <Row id="">
+                <Row>
                   <Link className="m-2" to="/user/profile" id="nav-link">
                     Profile
                   </Link>
