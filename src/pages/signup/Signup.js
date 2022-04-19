@@ -90,7 +90,7 @@ export default function Signup() {
             <Form.Control
               name="email"
               id="email"
-              autoComplete="email"
+              // autoComplete="email"
               required
               type="email"
               placeholder="name@gmail.com"
@@ -176,11 +176,14 @@ export default function Signup() {
               required
               id="phone number"
               type="tel"
-              pattern="[0-9]{10}"
+              // pattern="[+91][0-9]{13}"
+              // pattern="[0-9]{10}"
               message="please enter correct number"
               name="phoneNo"
-              placeholder="9999999999"
-              maxLength={10}
+              placeholder="+919999999999"
+              pattern="[+91][0-9].{11}"
+              maxLength={13}
+              title="enter phone number like +919999999999"
               defaultValue={data.phoneNo}
               onChange={handleChange}
             />

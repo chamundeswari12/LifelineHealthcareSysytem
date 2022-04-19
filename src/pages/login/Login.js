@@ -82,7 +82,7 @@ export default function Login() {
         </Button> */}
           <br />
           <Link className="text-center " to="/forgotPassword">
-            Forget Password?
+            Forgot Password?
           </Link>
           {" / "}
           <Link className="text-center" to="/signup">

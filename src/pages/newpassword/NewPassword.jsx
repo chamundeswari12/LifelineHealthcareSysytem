@@ -1,4 +1,4 @@
-import "./forgotPassword.css";
+// import "./otpverify.css";
 
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
@@ -6,26 +6,22 @@ import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../../components/navbar/Navbar";
 import ApiService from "../../services/ApiService";
 
-export default function ForgotPassword() {
+export default function NewPassword() {
   const [value, setValue] = useState("");
   const [errors, setErrors] = useState(false);
   const [status, setStatus] = useState(true);
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    e.target.value ? setStatus(false) : setStatus(true);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let data = { phoneNo: value };
-    ApiService.forgotPwd(data)
+    let data = { newPassword: value };
+    ApiService.verifyotp(data)
       .then((res) => {
         console.log(res.data);
         setErrors(false);
-        alert("Otp Sent");
+        alert("successfully!");
         // alert("Password change successfully!");
-        navigate("/forgotPassword/otpverify");
+        navigate("/login");
       })
       .catch((error) => {
         setErrors(true);
@@ -37,32 +33,28 @@ export default function ForgotPassword() {
       <NavBar />
       <div id="forgotPassword" className="container-sm ">
         <h1 className="title text-center">Welcome</h1>
-        {/* <Form onSubmit={handleSubmit}> */}
+
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="phone number">Phone Number</Form.Label>
+            <Form.Label htmlFor="newPassword">New Password</Form.Label>
             <Form.Control
-              pattern="[+91][0-9].{11}"
-              isInvalid={errors}
+              type="password"
+              name="newPassword"
+              id="newPassword"
+              title="enter new password"
               required
-              id="phone number"
-              type="text"
-              name="phoneNo"
-              placeholder="+919999999999"
-              // pattern="[+91][0-9].{11}"
-              title="enter phone number like +919999999999"
-              maxLength={13}
+              //   placeholder="+919999999999"
               defaultValue={value}
-              onChange={handleChange}
+              //   isInvalid={errors}
+              onChange={(e) => {
+                setValue(e.target.value);
+                e.target.value ? setStatus(false) : setStatus(true);
+              }}
             />
           </Form.Group>
-          {errors && (
-            <p className="text-danger mb-1">
-              Phone number do not match our records.
-            </p>
-          )}
+          {/* {errors && <p className="text-danger mb-1">OTP Invalid.</p>} */}
           <Button onClick={handleSubmit} disabled={status} variant="success">
-            Send OTP
+            Submit
           </Button>
           {"  "}
           <Button as={Link} to="/">

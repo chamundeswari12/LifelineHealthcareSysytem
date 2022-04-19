@@ -10,6 +10,7 @@ import { Button, Col, Container, Row, Tab } from "react-bootstrap";
 
 import ApiService from "../../services/ApiService";
 import SpinnerLoading from "../../components/spinner/Spinner";
+import moment from "moment";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +21,7 @@ export default function Profile() {
         setData(res.data);
         console.log(res.data);
         setIsLoading(false);
+        console.log(res.data.dob);
       })
       .catch((error) => {
         console.log(error);
@@ -110,7 +112,9 @@ export default function Profile() {
                             <p className="titleName">Date of Birth</p>
                           </Col>
                           <Col>
-                            <p className="titleValue">{data.dob}</p>
+                            <p className="titleValue">
+                              {moment(`${data.dob}`).format("DD MMM YYYY")}
+                            </p>
                           </Col>
                         </Row>
                         <Row>
@@ -133,12 +137,10 @@ export default function Profile() {
                       <Tab eventKey="time-line" title="Time Line">
                         <Row>
                           <Col>
-                            <p className="titleName">test timeline</p>
+                            <p className="titleName">Under construction</p>
                           </Col>
                           <Col>
-                            <p className="titleValue">
-                              test doctor appointment at 10
-                            </p>
+                            <p className="titleValue">Under construction</p>
                           </Col>
                         </Row>
                       </Tab>

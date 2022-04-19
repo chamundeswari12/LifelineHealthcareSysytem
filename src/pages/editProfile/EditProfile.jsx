@@ -42,6 +42,7 @@ export default function EditProfile() {
     ApiService.currentUser()
       .then((res) => {
         setData(res.data);
+        console.log(res.data.phoneNo);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -123,8 +124,10 @@ export default function EditProfile() {
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="phoneNo">Phone Number</Form.Label>
                     <Form.Control
-                      type="number"
-                      maxLength={10}
+                      type="text"
+                      pattern="[+91][0-9].{11}"
+                      maxLength={13}
+                      title="enter phone number like +919999999999"
                       id="phoneNo"
                       name="phoneNo"
                       defaultValue={data.phoneNo}
@@ -137,6 +140,7 @@ export default function EditProfile() {
                       name="dob"
                       id="dob"
                       required
+                      // pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/"
                       type="date"
                       value={data.dob}
                       onChange={handleChange}
