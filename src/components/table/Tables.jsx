@@ -97,9 +97,8 @@ export default function Tables() {
               <TableCell className="tableCell">
                 <span
                   className={`status ${row.status}`}
-                  value={row.status}
-                  onClick={(e) => {
-                    console.log(e.target.value);
+                  onClick={() => {
+                    console.log(row);
                   }}
                 >
                   {row.status}
