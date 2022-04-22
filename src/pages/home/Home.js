@@ -1,6 +1,7 @@
 import "./home.css";
 
 import NavBar from "../../components/navbar/Navbar";
+import Tables from "../../components/table/Tables";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           <h2>Welcome everyone</h2>
         </div>
       </section>
+      <Tables />
     </>
   );
 }

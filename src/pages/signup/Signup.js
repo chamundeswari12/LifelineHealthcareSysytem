@@ -18,19 +18,20 @@ export default function Signup() {
       [name]: value,
     }));
   };
-  let confirmPassword;
+  // let confirmPassword;
 
   const [errors, setErrors] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (data.password && data.password !== confirmPassword) {
+    if (data.password && data.password !== data.confirmPassword) {
       setErrors(true);
       return;
     }
 
     setErrors(false);
+    console.log(data);
     ApiService.register(data)
       .then((res) => {
         console.log(res.data);
@@ -125,8 +126,8 @@ export default function Signup() {
                 type="password"
                 placeholder="Enter your password"
                 // minLength="8"
-                defaultValue={confirmPassword}
-                onChange={(e) => (confirmPassword = e.target.value)}
+                defaultValue={data.confirmPassword}
+                onChange={handleChange}
                 isInvalid={errors}
                 // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
               />
