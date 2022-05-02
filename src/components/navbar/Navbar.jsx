@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Navbar, Container, Nav, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import LoginIcon from "@mui/icons-material/Login";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import "./Navbar.css";
 import profilepic from "../../images/profilepic.svg";
 
@@ -26,7 +30,7 @@ export default function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link className="m-2" to="/" id="nav-link">
-              Home
+              <HomeIcon className="icon" /> Home
             </Link>
           </Nav>
           <Nav id="nav">
@@ -37,6 +41,7 @@ export default function NavBar() {
             {(token == null || token == undefined) && (
               <Link className="m-2" to="/login" id="nav-link">
                 Login
+                <LoginIcon className="icon" />
               </Link>
             )}
 
@@ -61,10 +66,10 @@ export default function NavBar() {
               <Dropdown.Menu>
                 <Row>
                   <Link className="m-2" to="/user/profile" id="nav-link">
-                    Profile
+                    <ManageAccountsIcon className="icon" /> Profile
                   </Link>
                   <Link className="m-2" to="/user/settings" id="nav-link">
-                    Settings
+                    <SettingsIcon className="icon" /> Settings
                   </Link>
                   <Link
                     className="m-2"
@@ -72,6 +77,7 @@ export default function NavBar() {
                     onClick={handlefunction}
                     id="nav-link"
                   >
+                    <LogoutIcon className="icon" />
                     Logout
                   </Link>
                 </Row>

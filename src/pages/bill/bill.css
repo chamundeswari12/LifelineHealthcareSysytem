@@ -1,0 +1,7 @@
+.bill {
+  margin-top: 10px;
+  padding: 20px 50px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border: 1px solid rgba(114, 127, 243, 0.877);
+  border-radius: 5px;
+}

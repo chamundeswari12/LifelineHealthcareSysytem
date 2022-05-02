@@ -1,0 +1,34 @@
+.slot {
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  overflow: scroll;
+  max-width: 330px;
+}
+.date {
+  margin: 2px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.b1,
+.b3 {
+  background-color: lightgreen;
+}
+.b1:hover,
+.b3:hover {
+  background-color: rgb(199, 250, 199);
+}
+.b5 {
+  background-color: tomato;
+}
+.b0 {
+  background-color: aliceblue;
+  cursor: not-allowed !important;
+}

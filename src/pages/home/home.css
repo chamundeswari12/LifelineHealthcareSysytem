@@ -5,4 +5,5 @@
   /* background-image: url("https://images.pexels.com/photos/4386470/pexels-photo-4386470.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4386470.jpg&fm=jpg"); */
   background-size: cover;
   color: white;
+  max-width: 1024px;
 }

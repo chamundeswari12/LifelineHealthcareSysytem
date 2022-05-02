@@ -1,0 +1,10 @@
+.btnClose {
+  color: rgb(218, 212, 212);
+  border: none;
+  background-color: white;
+  font-weight: bold;
+}
+.btnClose:hover {
+  color: rgba(202, 192, 192, 0.815);
+  background-color: white;
+}

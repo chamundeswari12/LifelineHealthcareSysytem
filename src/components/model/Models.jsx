@@ -1,32 +1,78 @@
+import { useCallback, useEffect, useState } from "react";
 import { Button, Modal, Col, Row, Tab } from "react-bootstrap";
 import Tabs from "react-bootstrap/Tabs";
+import moment from "moment";
+import DataSelection from "../dataSelection/DataSelection";
+import Slot from "../slot/Slot";
+import "./models.css";
 
 export default function Models(props) {
-  console.log(props.data);
+  const [value, setValue] = useState(new Date());
+  const [slot, setSlot] = useState(false);
+  const onChange = useCallback(
+    (value) => {
+      setValue(value);
+
+      if (value.length > 1) {
+        setSlot(true);
+      } else {
+        setSlot(false);
+      }
+    },
+    [setValue]
+  );
+  const onClose = () => {
+    setValue(new Date());
+    setSlot(false);
+  };
+
+  // useEffect(() => {
+  //   if (value.length > 1) {
+  // setSlot(true);
+  //   }
+  // });
+  // useEffect({
+  //   if(value.length>1){
+
+  //   }
+
+  // },[value])
+
+  const handleClose = () => {
+    props.onHide();
+    setValue(new Date());
+    setSlot(false);
+  };
+  // console.log(value);
+  // console.log(props.data);
   return (
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      scrollable
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter" className="title">
           Doctor Profile
         </Modal.Title>
+        <Button className="btnClose" onClick={handleClose}>
+          X
+        </Button>
       </Modal.Header>
       <Modal.Body>
         <h4>{props.data.doctorName}</h4>
         <form>
           <Row className="profiledata">
-            <Col>
+            <Col xs={4}>
               <img
                 className="profile-img"
                 src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                 alt="profile"
               />
             </Col>
-            <Col>
+            <Col xs={8}>
               <div className="row">
                 <div className="profile-head">
                   <h5 className="name">
@@ -107,13 +153,18 @@ export default function Models(props) {
                   </Tabs>
                 </div>
               </div>
-              {/* </div> */}
             </Col>
           </Row>
         </form>
+        <Row>
+          <Col>
+            <DataSelection value={value} onChange={onChange} />
+          </Col>
+          <Col>{slot ? <Slot value={value} /> : ""}</Col>
+        </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

@@ -46,7 +46,7 @@ export default function Signup() {
     <>
       <NavBar />
       <div id="signup" className="container-sm ">
-        <h1 className="title text-center">Signup</h1>
+        <h1 className="title text-center">Create your account</h1>
         <Form onSubmit={handleSubmit}>
           <Row>
             <Form.Group as={Col} className="mb-3">
@@ -147,7 +147,7 @@ export default function Signup() {
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 checkbox">
             <Form.Label>Gender : </Form.Label>{" "}
             <Form.Check
               required
@@ -189,8 +189,10 @@ export default function Signup() {
               onChange={handleChange}
             />
           </Form.Group>
-          <Button type="submit">Signup</Button>{" "}
-          <Button as={Link} to="/">
+          <Button className="btn-signup" type="submit">
+            Signup
+          </Button>{" "}
+          <Button as={Link} to="/" variant="danger">
             Cancel
           </Button>
         </Form>

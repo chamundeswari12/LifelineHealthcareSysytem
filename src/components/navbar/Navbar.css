@@ -1,7 +1,6 @@
 .color-nav {
   background: rgba(114, 127, 243, 0.9);
   display: flex;
-
 }
 /* .img {
   width: 25px;
@@ -18,7 +17,7 @@
   border: transparent;
   background: transparent;
 }
-.toggle:hover  {
+.toggle:hover {
   background: transparent;
 }
 #nav {
@@ -45,6 +44,13 @@
   font-weight: bold;
   color: black;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.icon {
+  margin-top: -4px;
+  max-width: 18px;
 }
 #nav-link:hover {
   color: white;

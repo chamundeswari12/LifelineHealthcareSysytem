@@ -42,7 +42,7 @@ export default function Login() {
     <>
       <NavBar />
       <div id="login" className="container-sm ">
-        <h1 className="title text-center">Welcome</h1>
+        <h1 className="title text-center">Login</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
@@ -73,7 +73,7 @@ export default function Login() {
             />
           </Form.Group>
 
-          <Button type="submit" variant="success">
+          <Button type="submit" className="btn-login">
             Login
           </Button>
           {"  "}
@@ -86,7 +86,7 @@ export default function Login() {
           </Link>
           {" / "}
           <Link className="text-center" to="/signup">
-            New User? Signup
+            Create account
           </Link>
         </Form>
       </div>

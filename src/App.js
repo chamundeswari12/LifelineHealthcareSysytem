@@ -15,6 +15,7 @@ import { Fragment } from "react";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import Otpverify from "./pages/otpverify/Otpverify";
 import NewPassword from "./pages/newpassword/NewPassword";
+import Bill from "./pages/bill/Bill";
 
 export default function App() {
   return (
@@ -69,6 +70,15 @@ export default function App() {
                 }
               />
             </Route>
+            <Route
+              path="bill"
+              element={
+                <PrivateRoute>
+                  <Bill />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="aboutUs" element={<AboutUs />} />
           </Route>
         </Routes>
