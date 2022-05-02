@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Container, Nav, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
@@ -8,6 +8,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import "./Navbar.css";
 import profilepic from "../../images/profilepic.svg";
+import jwtDecode from "jwt-decode";
 
 export default function NavBar() {
   const [token, setToken] = useState(localStorage.getItem("Access_Token"));
@@ -16,6 +17,19 @@ export default function NavBar() {
     localStorage.clear();
     alert(`Logout Successful`);
     setToken((data) => (data = localStorage.getItem("Access_Token")));
+  };
+
+  const { exp } = jwtDecode(token);
+  const expirationTime = exp * 1000 - 60000;
+  console.log(Date.now(), expirationTime);
+  setTimeout(authLink, expirationTime);
+  const authLink = async () => {
+    console.log(Date.now(), expirationTime);
+    if (Date.now() >= expirationTime) {
+      console.log(expirationTime);
+      localStorage.clear();
+      setToken((data) => (data = localStorage.getItem("Access_Token")));
+    }
   };
 
   return (

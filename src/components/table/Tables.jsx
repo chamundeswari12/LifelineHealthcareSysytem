@@ -1,4 +1,3 @@
-// import "./table.scss";
 import "./table.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,15 +8,26 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Models from "../model/Models";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+/* A function that returns a table. */
 export default function Tables(props) {
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
+  const navigate = useNavigate();
   const handleData = (row) => {
+    if (row.status === "generate") {
+      navigate("/generatebill");
+    }
     setModalShow(true);
     setData(row);
   };
   const handleBook = (row) => {
+    // console.log(row);
+    if (row.status === "booked") {
+      navigate("/bill");
+    }
+
     // setModalShow(true);
     // setData(row);
   };

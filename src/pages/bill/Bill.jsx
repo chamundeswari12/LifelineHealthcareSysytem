@@ -10,7 +10,7 @@ const rows = [
     date: "1 March",
     amount: 785,
     method: "Online",
-    status: "book",
+    status: "bill",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const rows = [
     date: "1 March",
     amount: 1000,
     method: "Online",
-    status: "book",
+    status: "bill",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const rows = [
     date: "1 March",
     amount: 900,
     method: "Offline",
-    status: "book",
+    status: "bill",
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const rows = [
     date: "1 March",
     amount: 800,
     method: "Online",
-    status: "Generate bill",
+    status: "generate",
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const rows = [
 ];
 export default function Bill() {
   return (
-    <Container className="bill">
+    <Container className="bills">
       <Tables rows={rows} />
     </Container>
   );
