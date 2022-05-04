@@ -56,8 +56,9 @@ export default function User() {
   ];
 
   return (
-    <div className="user">
+    <div id="user">
       <h1>User dashboard</h1>
+      <input className="search" type="text" placeholder="Search" />
       <Tables rows={rows} />
     </div>
   );
