@@ -145,7 +145,12 @@ export default function GenerateBill() {
               value="500"
             />
           </Form.Group>
-          <Button className="btn-signup" type="submit">
+          <Button
+            as={Link}
+            to="/billdownload"
+            className="btn-signup"
+            type="submit"
+          >
             Make bill
           </Button>{" "}
           <Button as={Link} to="/" variant="danger">

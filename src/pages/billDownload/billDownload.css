@@ -1,0 +1,25 @@
+.billDownload {
+  margin-top: 20px;
+  width: 80% !important;
+  height: 100% !important;
+  padding: 20px 50px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border: 1px solid rgba(114, 127, 243, 0.877);
+  border-radius: 5px;
+}
+.section1 {
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+}
+.title {
+  color: rgba(114, 127, 243, 0.9);
+}
+.section2 {
+  display: flex;
+  justify-content: space-between;
+}
+.subTitle {
+  text-align: center !important;
+  justify-self: center;
+}

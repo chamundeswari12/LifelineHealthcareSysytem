@@ -17,6 +17,7 @@ import Otpverify from "./pages/otpverify/Otpverify";
 import NewPassword from "./pages/newpassword/NewPassword";
 import Bill from "./pages/bill/Bill";
 import GenerateBill from "./pages/generateBill/GenerateBill";
+import BillDownlaod from "./pages/billDownload/BillDownlaod";
 
 export default function App() {
   return (
@@ -84,6 +85,14 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <GenerateBill />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="billdownload"
+              element={
+                <PrivateRoute>
+                  <BillDownlaod />
                 </PrivateRoute>
               }
             />
