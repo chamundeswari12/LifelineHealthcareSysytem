@@ -14,6 +14,9 @@
   padding: 5px;
   border-radius: 5px;
 }
+.thead {
+  background-color: rgba(114, 127, 243, 1);
+}
 
 .booked {
   color: green;

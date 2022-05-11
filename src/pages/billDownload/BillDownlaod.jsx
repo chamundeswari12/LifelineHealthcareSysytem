@@ -1,92 +1,148 @@
 import React from "react";
 import "./billDownload.css";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import { Container, Row } from "react-bootstrap";
+// import { Container, Row } from "react-bootstrap";
 import Tables from "../../components/table/Tables";
+import ReactToPdf from "react-to-pdf";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { Button, Container } from "react-bootstrap";
 
 export default function BillDownlaod() {
+  // let sum = 0;
+  const ref = React.createRef();
+  const options = {
+    orientation: "portrait",
+    unit: "in",
+    format: [10, 8],
+  };
+  // const options = { orientation: "portrait" };
   const rows = [
     {
       id: 1,
-      doctorName: "Doc 01",
-      img: "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg",
-      specialist: "Cardiologists",
-      date: "1 March",
-      amount: 785,
-      method: "Online",
-      status: "book",
+      medicineName: "test medicine1",
+      type: "Liquid",
+      company: "Cipla",
+      expiryDate: "10-01-2022",
+      qty: "01",
+      unitPrice: 785,
     },
     {
       id: 2,
-      doctorName: "Doc 02",
-      img: "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg",
-      specialist: "Cardiologists",
-      date: "1 March",
-      amount: 1000,
-      method: "Online",
-      status: "book",
-    },
-    {
-      id: 3,
-      doctorName: "Doc 03",
-      img: "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg",
-      specialist: "Cardiologists",
-      date: "1 March",
-      amount: 900,
-      method: "Offline",
-      status: "book",
-    },
-    {
-      id: 4,
-      doctorName: "Doc 04",
-      img: "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg",
-      specialist: "Cardiologists",
-      date: "1 March",
-      amount: 800,
-      method: "Online",
-      status: "booked",
-    },
-    {
-      id: 5,
-      doctorName: "Doc 05",
-      img: "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg",
-      specialist: "Cardiologists",
-      date: "1 March",
-      amount: 850,
-      method: "Online",
-      status: "book",
+      medicineName: "test medicine2",
+      type: "Capsules",
+      company: "Cipla",
+      expiryDate: "10-01-2022",
+      qty: "02",
+      unitPrice: 785,
     },
   ];
   return (
-    <Container className="billDownload">
-      <div className="section1">
-        <LocalHospitalIcon />
-        <div className="section1-2">
-          <h4 className="title">Appointment</h4>
-          <h5 className="title">Billing date:06-05-22</h5>
-        </div>
-      </div>
-      <hr />
-      <div className="section2">
-        <div className="section2-1">
-          <h4 className="title">Patient Details:</h4>
-          <h5 className="title">Name:test</h5>
-          <p>
-            Age:24
-            <br /> Blood Group: B+
-            <br />
-            Email: test@gmail.com
-            <br />
-            Phone no: 9999999999
-          </p>
-        </div>
-        <div className="section2-2">
-          <h4 className="title">Appointment</h4>
-          <h5 className="title">Billing date:06-05-22</h5>
-        </div>
-      </div>
-      <h4 className="subTitle">Assigned Medicines</h4>
-      <Tables rows={rows} />
-    </Container>
+    <>
+      {/* <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          "& > :not(style)": {
+            m: 1,
+            width: 128,
+            height: 128,
+          },
+        }}
+      > */}
+      <ReactToPdf options={options} scale={0.65} x={0.1} y={0.1}>
+        {({ toPdf, targetRef }) => (
+          <Container
+            // size="A4"
+            // elevation={3}
+            ref={targetRef}
+            className="billDownload page"
+          >
+            <div className="section1">
+              <div className="section1-1">
+                {/* <LocalHospitalIcon /> */}
+                <h4 className="title">LHS</h4>
+              </div>
+              <div className="section1-2">
+                <h4 className="title">Appointment</h4>
+                <h5 className="title">Billing date:06-05-22</h5>
+              </div>
+            </div>
+            <hr />
+            <div className="section2">
+              <div className="section2-1">
+                <h4 className="title">Patient Details:</h4>
+                <h5 className="title">Name:test</h5>
+                <p>
+                  Age:24
+                  <br /> Blood Group: B+
+                  <br />
+                  Email: test@gmail.com
+                  <br />
+                  Phone no: 9999999999
+                </p>
+              </div>
+              <div className="section2-2">
+                <h4 className="title">Doctor Details:</h4>
+                <h5 className="title">Name: Doctor</h5>
+                <p>Specialist Cardiologists</p>
+              </div>
+            </div>
+            <h4 className="subTitle">Assigned Medicines</h4>
+            <Tables rows={rows} bill={true} />
+
+            {/* {rows.map((t) => {
+              sum = sum + t.qty * t.unitPrice;
+              console.log(sum);
+            })} */}
+            {/* <div className="amount">
+              <div>
+                <p className="amountTitle">amount</p>
+                <p className="amountTitle">Consulting fees</p>
+                <p className="amountTitle">Bill amount </p>
+                <p className="amountTitle">GST@18%</p>
+                <p className="amountTitle">Total amount</p>
+              </div>
+              <div>
+                <p className="amountValue">{sum}</p>
+                <p className="amountValue">500</p>
+                <p className="amountValue">{sum + 500}</p>
+                <p className="amountValue">{(sum + 500) * 0.18}</p>
+                <p className="amountValue">{sum + (sum + 500) * 0.18}</p>
+              </div>
+            </div> */}
+            {/* <p className="amount">
+              Bill amount={sum}
+              <br className="line" />
+              Consulting fees=500
+              <br className="line" />
+              {sum + 500}
+              <br className="line" />
+              GST@18%={(sum + 500) * 0.18}
+              <br className="line" />
+              Total amount={sum + (sum + 500) * 0.18}
+              <br className="line" />
+            </p> */}
+
+            <Button onClick={toPdf} className="downlaod">
+              Download pdf
+            </Button>
+          </Container>
+        )}
+      </ReactToPdf>
+
+      {/* <Pdf
+        targetRef={ref}
+        filename="Bill.pdf"
+        options={options}
+        // x={0.5}
+        // y={0.5}
+        scale={0.8}
+      >
+        {({ toPdf }) => <button onClick={toPdf}>Download pdf</button>}
+      </Pdf> */}
+      {/* </Box> */}
+    </>
   );
 }

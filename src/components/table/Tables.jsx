@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 /* A function that returns a table. */
 export default function Tables(props) {
+  let sum = 0;
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function Tables(props) {
     // setModalShow(true);
     // setData(row);
   };
-
+  // console.log(props.bill);
   return (
     <>
       <Models
@@ -42,65 +43,171 @@ export default function Tables(props) {
           setData({});
         }}
       />
+
       <TableContainer component={Paper} className="table">
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell className="tableCell">ID</TableCell>
-              <TableCell className="tableCell">Doctor Name</TableCell>
-              <TableCell className="tableCell">Specialist</TableCell>
-              {/* <TableCell className="tableCell">View Profile</TableCell> */}
-              <TableCell className="tableCell">Date</TableCell>
-              <TableCell className="tableCell">Fees</TableCell>
-              <TableCell className="tableCell">Payment Method</TableCell>
-              <TableCell className="tableCell">Appointment</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell className="tableCell">{row.id}</TableCell>
+        <Table sx={{ minWidth: 100 }} aria-label="simple table">
+          {props.bill === true ? (
+            <TableHead className="thead">
+              <TableRow>
                 <TableCell className="tableCell">
-                  <div className="cellWrapper">
-                    <img src={row.img} alt="" className="image" />
-                    {row.doctorName}
-                  </div>
+                  <b>Sl.no</b>
                 </TableCell>
-                <TableCell className="tableCell">{row.specialist}</TableCell>
-                {/* <TableCell
+                <TableCell className="tableCell">
+                  <b>Medicine Name</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Type</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Company</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Expiry Date</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Qty</b>
+                </TableCell>
+                <TableCell className="tableCell" align="right">
+                  <b>Unit Price</b>
+                </TableCell>
+                <TableCell className="tableCell" align="right">
+                  <b>Price</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+          ) : (
+            <TableHead className="thead">
+              <TableRow>
+                <TableCell className="tableCell">
+                  <b>ID</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Doctor Name</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Specialist</b>
+                </TableCell>
+                {/* <TableCell className="tableCell">View Profile</TableCell> */}
+                <TableCell className="tableCell">
+                  <b>Date</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Fees</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Payment Method</b>
+                </TableCell>
+                <TableCell className="tableCell">
+                  <b>Appointment</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+          )}
+
+          <TableBody>
+            {props.bill === true
+              ? props.rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell className="tableCell">{row.id}</TableCell>
+                    <TableCell className="tableCell">
+                      {row.medicineName}
+                    </TableCell>
+                    <TableCell className="tableCell">{row.type}</TableCell>
+                    <TableCell className="tableCell">{row.company}</TableCell>
+                    <TableCell className="tableCell">
+                      {row.expiryDate}
+                    </TableCell>
+                    <TableCell className="tableCell">{row.qty}</TableCell>
+                    <TableCell className="tableCell" align="right">
+                      {row.unitPrice}
+                    </TableCell>
+                    <TableCell className="tableCell" align="right">
+                      {row.qty * row.unitPrice}
+                    </TableCell>
+                  </TableRow>
+                ))
+              : props.rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell className="tableCell">{row.id}</TableCell>
+                    <TableCell className="tableCell">
+                      <div className="cellWrapper">
+                        <img src={row.img} alt="" className="image" />
+                        {row.doctorName}
+                      </div>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      {row.specialist}
+                    </TableCell>
+                    {/* <TableCell
                   className="tableCell view"
                   onClick={() => handleData(row)}
                 >
                   View Profile
                 </TableCell> */}
-                <TableCell className="tableCell">{row.date}</TableCell>
-                <TableCell className="tableCell">{row.amount}</TableCell>
-                <TableCell className="tableCell">
-                  <span className={`${row.method} view`}>{row.method}</span>
-                </TableCell>
-                <TableCell className="tableCell">
-                  {row.status === "booked" ? (
-                    <>
-                      <span
-                        className={`status ${row.status} view`}
-                        onClick={() => handleBook(row)}
-                      >
-                        {row.status}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <span
-                        className={`status ${row.status} view`}
-                        onClick={() => handleData(row)}
-                      >
-                        {row.status}
-                      </span>
-                    </>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+                    <TableCell className="tableCell">{row.date}</TableCell>
+                    <TableCell className="tableCell">{row.amount}</TableCell>
+                    <TableCell className="tableCell">
+                      <span className={`${row.method} view`}>{row.method}</span>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      {row.status === "booked" ? (
+                        <>
+                          <span
+                            className={`status ${row.status} view`}
+                            onClick={() => handleBook(row)}
+                          >
+                            {row.status}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span
+                            className={`status ${row.status} view`}
+                            onClick={() => handleData(row)}
+                          >
+                            {row.status}
+                          </span>
+                        </>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            {props.rows?.map((t) => {
+              sum = sum + t.qty * t.unitPrice;
+              console.log(sum);
+            })}
+            {props.bill === true && (
+              <>
+                <TableRow>
+                  <TableCell rowSpan={5} colSpan={6} />
+
+                  <TableCell>Subtotal</TableCell>
+                  <TableCell align="right">{sum}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Consulting fees</TableCell>
+                  <TableCell align="right">500</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell colSpan={1} />
+
+                  <TableCell align="right">{sum + 500}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>GST@18%</TableCell>
+
+                  <TableCell align="right">{(sum + 500) * 0.18}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <b>Total</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <b>{(sum + 500) * 0.18 + sum + 500}</b>
+                  </TableCell>
+                </TableRow>
+              </>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
