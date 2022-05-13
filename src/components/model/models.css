@@ -1,10 +1,23 @@
 .btnClose {
-  color: rgb(218, 212, 212);
+  color: gray;
   border: none;
   background-color: white;
   font-weight: bold;
 }
 .btnClose:hover {
   color: rgba(202, 192, 192, 0.815);
-  background-color: white;
+  background-color: rgb(236, 84, 84);
+}
+.profile-img {
+  max-width: 200px;
+  max-height: 200px;
+}
+.slotSection {
+  display: flex;
+  flex-direction: column;
+}
+.dateSelection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

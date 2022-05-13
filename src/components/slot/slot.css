@@ -1,34 +1,59 @@
 .slot {
-  display: flex;
-  flex-flow: row nowrap;
+  /* display: flex;
+  flex-flow: row wrap; */
   border-radius: 5px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  overflow: scroll;
-  max-width: 330px;
+  /* overflow: wrap; */
+  /* max-width: 330px; */
+  /* margin-left: 0; */
+  /* margin-right: 10px; */
+  margin: 2px;
+  padding: 2px;
+  display: flex;
+}
+.formateDate {
+  margin-top: 10px;
+  margin-right: 4px;
+  /* margin-left: 2px; */
+  padding: 0px;
+  font-size: 15px;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 .date {
   margin: 2px;
   padding: 2px;
   display: flex;
+  /* flex-direction: column; */
+}
+.time {
+  display: flex;
+  /* padding-right: 10px; */
+  /* flex-direction: column; */
+}
+.timeStamp {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 500;
   flex-direction: column;
+  margin-top: 2px;
+  max-width: 100px;
+  max-height: 45px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
-.btn {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
-.b1,
-.b3 {
+.avaliable {
   background-color: lightgreen;
 }
-.b1:hover,
+/* .b1:hover,
 .b3:hover {
   background-color: rgb(199, 250, 199);
-}
-.b5 {
+} */
+.filled {
   background-color: tomato;
 }
-.b0 {
+/* .b0 {
   background-color: aliceblue;
   cursor: not-allowed !important;
-}
+} */

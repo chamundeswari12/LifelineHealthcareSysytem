@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./billDownload.css";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 // import { Container, Row } from "react-bootstrap";
@@ -8,10 +8,14 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { Button, Container } from "react-bootstrap";
+import ApiService from "../../services/ApiService";
+import SpinnerLoading from "../../components/spinner/Spinner";
 
 export default function BillDownlaod() {
   // let sum = 0;
   const ref = React.createRef();
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState();
   const options = {
     orientation: "portrait",
     unit: "in",
@@ -38,9 +42,24 @@ export default function BillDownlaod() {
       unitPrice: 785,
     },
   ];
+  useEffect(() => {
+    ApiService.billData()
+      .then((res) => {
+        setData(res.data);
+        console.table(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <>
-      {/* <Box
+      {isLoading ? (
+        <SpinnerLoading />
+      ) : (
+        <>
+          {/* <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -51,52 +70,52 @@ export default function BillDownlaod() {
           },
         }}
       > */}
-      <ReactToPdf options={options} scale={0.65} x={0.1} y={0.1}>
-        {({ toPdf, targetRef }) => (
-          <Container
-            // size="A4"
-            // elevation={3}
-            ref={targetRef}
-            className="billDownload page"
-          >
-            <div className="section1">
-              <div className="section1-1">
-                {/* <LocalHospitalIcon /> */}
-                <h4 className="title">LHS</h4>
-              </div>
-              <div className="section1-2">
-                <h4 className="title">Appointment</h4>
-                <h5 className="title">Billing date:06-05-22</h5>
-              </div>
-            </div>
-            <hr />
-            <div className="section2">
-              <div className="section2-1">
-                <h4 className="title">Patient Details:</h4>
-                <h5 className="title">Name:test</h5>
-                <p>
-                  Age:24
-                  <br /> Blood Group: B+
-                  <br />
-                  Email: test@gmail.com
-                  <br />
-                  Phone no: 9999999999
-                </p>
-              </div>
-              <div className="section2-2">
-                <h4 className="title">Doctor Details:</h4>
-                <h5 className="title">Name: Doctor</h5>
-                <p>Specialist Cardiologists</p>
-              </div>
-            </div>
-            <h4 className="subTitle">Assigned Medicines</h4>
-            <Tables rows={rows} bill={true} />
+          <ReactToPdf options={options} scale={0.65} x={0.1} y={0.1}>
+            {({ toPdf, targetRef }) => (
+              <Container
+                // size="A4"
+                // elevation={3}
+                ref={targetRef}
+                className="billDownload page"
+              >
+                <div className="section1">
+                  <div className="section1-1">
+                    {/* <LocalHospitalIcon /> */}
+                    <h4 className="title">LHS</h4>
+                  </div>
+                  <div className="section1-2">
+                    <h4 className="title">Appointment</h4>
+                    <h5 className="title">Billing date:06-05-22</h5>
+                  </div>
+                </div>
+                <hr />
+                <div className="section2">
+                  <div className="section2-1">
+                    <h4 className="title">Patient Details:</h4>
+                    <h5 className="title">Name:test</h5>
+                    <p>
+                      Age:24
+                      <br /> Blood Group: B+
+                      <br />
+                      Email: test@gmail.com
+                      <br />
+                      Phone no: 9999999999
+                    </p>
+                  </div>
+                  <div className="section2-2">
+                    <h4 className="title">Doctor Details:</h4>
+                    <h5 className="title">Name: Doctor</h5>
+                    <p>Specialist Cardiologists</p>
+                  </div>
+                </div>
+                <h4 className="subTitle">Assigned Medicines</h4>
+                <Tables rows={rows} bill={true} />
 
-            {/* {rows.map((t) => {
+                {/* {rows.map((t) => {
               sum = sum + t.qty * t.unitPrice;
               console.log(sum);
             })} */}
-            {/* <div className="amount">
+                {/* <div className="amount">
               <div>
                 <p className="amountTitle">amount</p>
                 <p className="amountTitle">Consulting fees</p>
@@ -112,7 +131,7 @@ export default function BillDownlaod() {
                 <p className="amountValue">{sum + (sum + 500) * 0.18}</p>
               </div>
             </div> */}
-            {/* <p className="amount">
+                {/* <p className="amount">
               Bill amount={sum}
               <br className="line" />
               Consulting fees=500
@@ -125,14 +144,14 @@ export default function BillDownlaod() {
               <br className="line" />
             </p> */}
 
-            <Button onClick={toPdf} className="downlaod">
-              Download pdf
-            </Button>
-          </Container>
-        )}
-      </ReactToPdf>
+                <Button onClick={toPdf} className="downlaod">
+                  Download pdf
+                </Button>
+              </Container>
+            )}
+          </ReactToPdf>
 
-      {/* <Pdf
+          {/* <Pdf
         targetRef={ref}
         filename="Bill.pdf"
         options={options}
@@ -142,7 +161,9 @@ export default function BillDownlaod() {
       >
         {({ toPdf }) => <button onClick={toPdf}>Download pdf</button>}
       </Pdf> */}
-      {/* </Box> */}
+          {/* </Box> */}
+        </>
+      )}
     </>
   );
 }

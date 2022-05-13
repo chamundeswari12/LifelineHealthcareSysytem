@@ -1,6 +1,6 @@
 import "./Signup.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -42,6 +42,13 @@ export default function Signup() {
         console.log(error);
       });
   };
+  // useEffect(() => {
+  //   if (data.password && data.password !== data.confirmPassword) {
+  //     setErrors(true);
+  //     return;
+  //   }
+  //   setErrors(false);
+  // }, [errors]);
   return (
     <>
       <NavBar />
@@ -181,9 +188,9 @@ export default function Signup() {
               // pattern="[0-9]{10}"
               message="please enter correct number"
               name="phoneNo"
-              placeholder="+919999999999"
-              pattern="[+91][0-9].{11}"
-              maxLength={13}
+              // placeholder="+919999999999"
+              // pattern="[+91][0-9].{11}"
+              // maxLength={13}
               title="enter phone number like +919999999999"
               defaultValue={data.phoneNo}
               onChange={handleChange}

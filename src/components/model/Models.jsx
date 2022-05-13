@@ -12,8 +12,8 @@ export default function Models(props) {
   const onChange = useCallback(
     (value) => {
       setValue(value);
-
-      if (value.length > 1) {
+      console.log(value);
+      if (value) {
         setSlot(true);
       } else {
         setSlot(false);
@@ -26,43 +26,30 @@ export default function Models(props) {
     setSlot(false);
   };
 
-  // useEffect(() => {
-  //   if (value.length > 1) {
-  // setSlot(true);
-  //   }
-  // });
-  // useEffect({
-  //   if(value.length>1){
-
-  //   }
-
-  // },[value])
-
   const handleClose = () => {
     props.onHide();
     setValue(new Date());
     setSlot(false);
   };
-  // console.log(value);
-  // console.log(props.data);
+
   return (
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      scrollable
+      // scrollable
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter" className="title">
-          Doctor Profile
+          {props.data.doctorName}
         </Modal.Title>
         <Button className="btnClose" onClick={handleClose}>
           X
         </Button>
       </Modal.Header>
       <Modal.Body>
-        <h4>{props.data.doctorName}</h4>
+        {/* <h4>{props.data.doctorName}</h4> */}
         <form>
           <Row className="profiledata">
             <Col xs={4}>
@@ -71,8 +58,8 @@ export default function Models(props) {
                 src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                 alt="profile"
               />
-            </Col>
-            <Col xs={8}>
+              {/* </Col> */}
+              {/* <Col xs={8}> */}
               <div className="row">
                 <div className="profile-head">
                   <h5 className="name">
@@ -106,14 +93,14 @@ export default function Models(props) {
                           <p className="titleValue">{props.data.specialist}</p>
                         </Col>
                       </Row>
-                      <Row>
+                      {/* <Row>
                         <Col>
                           <p className="titleName">Payment method</p>
                         </Col>
                         <Col>
                           <p className="titleValue">{props.data.method}</p>
                         </Col>
-                      </Row>
+                      </Row> */}
                       <Row>
                         <Col>
                           <p className="titleName">Fee</p>
@@ -123,24 +110,24 @@ export default function Models(props) {
                         </Col>
                       </Row>
 
-                      <Row>
+                      {/* <Row>
                         <Col>
                           <p className="titleName">Phone Number</p>
                         </Col>
                         <Col>
                           <p className="titleValue">{props.data.phoneNo}</p>
                         </Col>
-                      </Row>
-                      <Row>
+                      </Row> */}
+                      {/* <Row>
                         <Col>
                           <p className="titleName">Gender</p>
                         </Col>
                         <Col>
                           <p className="titleValue">{props.data.gender}</p>
                         </Col>
-                      </Row>
+                      </Row> */}
                     </Tab>
-                    <Tab eventKey="time-line" title="Time Line">
+                    {/* <Tab eventKey="time-line" title="Time Line">
                       <Row>
                         <Col>
                           <p className="titleName">Under construction</p>
@@ -149,23 +136,27 @@ export default function Models(props) {
                           <p className="titleValue">Under construction</p>
                         </Col>
                       </Row>
-                    </Tab>
+                    </Tab> */}
                   </Tabs>
                 </div>
               </div>
             </Col>
+            {/* <Row> */}
+            <Col xs={8} className="slotSection">
+              <DataSelection
+                className="dateSelection"
+                value={value}
+                onChange={onChange}
+              />
+              {slot ? <Slot value={value} /> : ""}
+            </Col>
+            {/* </Row> */}
           </Row>
         </form>
-        <Row>
-          <Col>
-            <DataSelection value={value} onChange={onChange} />
-          </Col>
-          <Col>{slot ? <Slot value={value} /> : ""}</Col>
-        </Row>
       </Modal.Body>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <Button onClick={handleClose}>Close</Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }

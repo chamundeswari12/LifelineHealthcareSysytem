@@ -1,5 +1,11 @@
+.calender {
+  justify-content: center;
+  align-items: center;
+}
+
 .react-calendar {
-  margin: 10px;
+  /* margin: 10px; */
+  margin: 5%;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 5px;
   cursor: pointer;

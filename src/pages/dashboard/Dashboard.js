@@ -14,6 +14,7 @@ export default function Dashboard() {
   useEffect(() => {
     ApiService.currentUser()
       .then((res) => {
+        console.log(res.data);
         setRole(res.data.authorities[0].authority);
         localStorage.setItem("user", JSON.stringify(res.data));
         setIsLoading(false);

@@ -1,59 +1,110 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import moment from "moment";
 import "./slot.css";
+import ApiService from "../../services/ApiService";
+import SpinnerLoading from "../spinner/Spinner";
 
 export default function Slot(props) {
-  //   console.table(props.value);
-  let date = [];
-  //   props.value.map((it) => date.push(moment(it).format("DD MMM YYYY")));
-  console.log(date);
+  const [data, setData] = useState([]);
 
-  function getDatesInRange(startDate, endDate) {
-    const date = new Date(startDate.getTime());
-    const dates = [];
-    while (date <= endDate) {
-      dates.push(moment(new Date(date)).format("DD MMM YYYY"));
-      date.setDate(date.getDate() + 1);
-    }
-    return dates;
-  }
-  date = getDatesInRange(props.value[0], props.value[1]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    ApiService.getSlotDetails()
+      .then((res) => {
+        console.table(res.data);
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  let data = [
-    "10:00",
-    "10:15",
-    "10:30",
-    "11:00",
-    "11:15",
-    "11:30",
-    "12:00",
-    "1:00",
-    "1:15",
-  ];
-
+  const handleSubmit = (it) => {
+    // console.log(it.slotTime http://10.81.3.109:8080/appointment/book/2
+    // );
+    it.isBooked == 1
+      ? ApiService.unBookSlot(it.appointmentId)
+          .then((res) => {
+            // console.log(res.data);
+            alert("Slot Cancelled successfully");
+            ApiService.getSlotDetails()
+              .then((res) => {
+                // console.table(res.data);
+                setData(res.data);
+                setIsLoading(false);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      : ApiService.bookSlot(it.appointmentId)
+          .then((res) => {
+            // console.log(res.data);
+            alert("Slot Booking successfull");
+            ApiService.getSlotDetails()
+              .then((res) => {
+                // console.table(res.data);
+                setData(res.data);
+                setIsLoading(false);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+  };
   return (
     <>
-      <h4 className="title text-center">Slot</h4>
-      <Container className="slot">
-        {date.map((date, index) => (
-          <div key={index} className="date">
-            <h6>{date}</h6>
-            {data.map((time, index) => (
-              <span
-                className={`btn b${index}`}
-                key={index}
-                onClick={() => {
-                  console.log(time);
-                  alert(time);
-                }}
-              >
-                {time}
-              </span>
+      {isLoading ? (
+        <SpinnerLoading />
+      ) : (
+        <>
+          <h4 className="title text-center">Slot</h4>
+          <Container className="slot">
+            {data?.map((it, index) => (
+              <div key={index} className="date">
+                {index < 1 ? (
+                  <h6 className="title formateDate text-center">
+                    {moment(`${it.slotDate}`).format("DD MMM YYYY  dddd")}
+                  </h6>
+                ) : (
+                  ""
+                )}
+                {index > 1 ? (
+                  data[index - 1].slotDate == it.slotDate ? (
+                    ""
+                  ) : (
+                    <h6 className="title formateDate text-center">
+                      {moment(`${it.slotDate}`).format("DD MMM YYYY  dddd")}
+                    </h6>
+                  )
+                ) : (
+                  ""
+                )}
+
+                <span
+                  className={`timeStamp  btn ${
+                    it.isBooked == 1 ? "filled" : "avaliable"
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit(it);
+                  }}
+                >
+                  {it.slotTime}
+                </span>
+              </div>
             ))}
-          </div>
-        ))}
-      </Container>
+          </Container>
+        </>
+      )}
     </>
   );
 }
