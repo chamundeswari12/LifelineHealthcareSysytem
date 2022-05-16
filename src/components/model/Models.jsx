@@ -12,7 +12,7 @@ export default function Models(props) {
   const onChange = useCallback(
     (value) => {
       setValue(value);
-      console.log(value);
+      // console.log(value);
       if (value) {
         setSlot(true);
       } else {

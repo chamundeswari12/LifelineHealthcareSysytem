@@ -18,6 +18,8 @@ import NewPassword from "./pages/newpassword/NewPassword";
 import Bill from "./pages/bill/Bill";
 import GenerateBill from "./pages/generateBill/GenerateBill";
 import BillDownlaod from "./pages/billDownload/BillDownlaod";
+import { DoctorSignup } from "./pages/doctorSignup/DoctorSignup";
+import { NurseSignup } from "./pages/nurseSignup/NurseSignup";
 
 export default function App() {
   return (
@@ -42,6 +44,22 @@ export default function App() {
                 element={
                   <PrivateRoute>
                     <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="doctorSignup"
+                element={
+                  <PrivateRoute>
+                    <DoctorSignup />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="NurseSignup"
+                element={
+                  <PrivateRoute>
+                    <NurseSignup />
                   </PrivateRoute>
                 }
               />

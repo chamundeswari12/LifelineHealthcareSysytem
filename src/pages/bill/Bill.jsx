@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
-import NavBar from "../../components/navbar/Navbar";
+import "./bill.css";
 import Tables from "../../components/table/Tables";
+
 const rows = [
   {
     id: 1,
