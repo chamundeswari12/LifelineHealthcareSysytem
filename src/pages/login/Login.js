@@ -24,7 +24,7 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         sessionStorage.setItem("Access_Token", res.data.token);
-        // const user = localStorage.getItem('user')
+
         const username = jwt(res.data.token).sub;
         console.log(username);
         sessionStorage.setItem("username", username);

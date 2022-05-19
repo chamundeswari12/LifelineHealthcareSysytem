@@ -11,7 +11,7 @@ import ApiService from "../../services/ApiService";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
-  const token = localStorage.getItem("Access_Token");
+  const token = sessionStorage.getItem("Access_Token");
   const [role, setRole] = useState("");
   useEffect(() => {
     ApiService.currentUser()
