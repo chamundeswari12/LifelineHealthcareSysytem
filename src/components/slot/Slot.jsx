@@ -107,6 +107,13 @@ export default function Slot(props) {
                   </span>
                 </div>
               ))}
+            {data.map((it) =>
+              it.slotDate.includes(moment(props.value).format("YYYY-MM-DD")) ? (
+                ""
+              ) : (
+                <h6>Please select avaliable dates only</h6>
+              )
+            )}
           </Container>
         </>
       )}

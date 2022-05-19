@@ -3,6 +3,14 @@
   align-items: center;
 } */
 
+.rc_body-days-of-month .rc_body-cell.rc_highlight:not(.rc_disabled) button {
+  border-bottom: none !important;
+  background-color: lightgreen;
+  border-radius: 5px;
+}
+.rc_body-days-of-month .rc_body-cell.rc_today:not(.rc_disabled) button {
+  border-bottom: none !important;
+}
 .react-calendar {
   /* margin: 10px; */
   border: none !important;
@@ -12,11 +20,11 @@
   cursor: pointer;
   font-family: sans-serif;
 }
-.react-calendar button {
+/* .react-calendar button {
   border-radius: 5px;
-  /* margin: 0.1px !important; */
+  margin: 0.1px !important;
 }
 .calender {
   color: rgba(114, 127, 243, 0.9);
   text-decoration: none;
-}
+} */

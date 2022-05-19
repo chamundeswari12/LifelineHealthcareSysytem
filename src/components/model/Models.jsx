@@ -5,9 +5,13 @@ import moment from "moment";
 import DataSelection from "../dataSelection/DataSelection";
 import Slot from "../slot/Slot";
 import "./models.css";
+import ApiService from "../../services/ApiService";
+import SpinnerLoading from "../spinner/Spinner";
 
 export default function Models(props) {
   const [value, setValue] = useState(new Date());
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [slot, setSlot] = useState(false);
   const onChange = useCallback(
     (value) => {
@@ -21,6 +25,15 @@ export default function Models(props) {
     },
     [setValue]
   );
+
+  const isHighlight = useCallback((date) => {
+    let calenderDate = moment(date).format("YYYY-MM-DD");
+    let status = false;
+    data?.map((it) =>
+      it.slotDate.includes(calenderDate) ? (status = true) : ""
+    );
+    return status;
+  });
   const onClose = () => {
     setValue(new Date());
     setSlot(false);
@@ -31,6 +44,19 @@ export default function Models(props) {
     setValue(new Date());
     setSlot(false);
   };
+
+  useEffect(() => {
+    // console.log(moment(props.value).format("YYYY-M)M-DD");
+    ApiService.getSlotDetails()
+      .then((res) => {
+        console.table(res.data);
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Modal
@@ -49,7 +75,6 @@ export default function Models(props) {
         </Button>
       </Modal.Header>
       <Modal.Body>
-        {/* <h4>{props.data.doctorName}</h4> */}
         <form>
           <Row className="profiledata">
             <Col xs={4}>
@@ -58,19 +83,14 @@ export default function Models(props) {
                 src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                 alt="profile"
               />
-              {/* </Col> */}
-              {/* <Col xs={8}> */}
+
               <div className="row">
                 <div className="profile-head">
                   <h5 className="name">
                     {props.data.firstName} {props.data.lastName}
                   </h5>
-                  <h5 className="role">
-                    {/* {props.data.authorities[0].authority} */}
-                  </h5>
-                  <p className="profile-rating mt-3 mb-3">
-                    {/* Rating:<span>1/10</span> */}
-                  </p>
+                  <h5 className="role"></h5>
+                  <p className="profile-rating mt-3 mb-3"></p>
                   <Tabs
                     defaultActiveKey="about-us"
                     id="uncontrolled-tab-example"
@@ -143,12 +163,19 @@ export default function Models(props) {
             </Col>
             {/* <Row> */}
             <Col xs={8} className="slotSection">
-              <DataSelection
-                className="dateSelection"
-                value={value}
-                onChange={onChange}
-              />
-              {slot ? <Slot value={value} /> : ""}
+              {isLoading ? (
+                <SpinnerLoading />
+              ) : (
+                <>
+                  <DataSelection
+                    className="dateSelection"
+                    value={value}
+                    onChange={onChange}
+                    isHighlight={isHighlight}
+                  />
+                  {slot ? <Slot value={value} data={data} /> : ""}
+                </>
+              )}
             </Col>
             {/* </Row> */}
           </Row>

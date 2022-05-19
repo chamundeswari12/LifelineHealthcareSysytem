@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.6.1",
     "@mui/material": "^5.6.4",
+    "@natscale/react-calendar": "^0.0.0-beta.23",
     "@react-pdf/renderer": "^2.1.1",
     "axios": "0.26.1",
     "bootstrap": "5.1.3",
