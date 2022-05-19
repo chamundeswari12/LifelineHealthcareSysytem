@@ -35,7 +35,7 @@ const EDIT_PROFILE = `${BASE_URL}/user/profileInfoUpdate`;
 
 //delete
 export function auth() {
-  const token = localStorage.getItem("Access_Token");
+  const token = sessionStorage.getItem("Access_Token");
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
