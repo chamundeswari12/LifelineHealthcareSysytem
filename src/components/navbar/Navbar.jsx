@@ -11,12 +11,12 @@ import profilepic from "../../images/profilepic.svg";
 import jwtDecode from "jwt-decode";
 
 export default function NavBar() {
-  const [token, setToken] = useState(localStorage.getItem("Access_Token"));
-  const username = localStorage.getItem("username");
+  const [token, setToken] = useState(sessionStorage.getItem("Access_Token"));
+  const username = sessionStorage.getItem("username");
   const handlefunction = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     alert(`Logout Successful`);
-    setToken((data) => (data = localStorage.getItem("Access_Token")));
+    setToken((data) => (data = sessionStorage.getItem("Access_Token")));
   };
 
   //  const { exp } = jwtDecode(token);

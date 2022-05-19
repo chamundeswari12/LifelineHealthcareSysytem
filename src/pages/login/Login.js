@@ -23,11 +23,11 @@ export default function Login() {
 
       .then((res) => {
         console.log(res);
-        localStorage.setItem("Access_Token", res.data.token);
+        sessionStorage.setItem("Access_Token", res.data.token);
         // const user = localStorage.getItem('user')
         const username = jwt(res.data.token).sub;
         console.log(username);
-        localStorage.setItem("username", username);
+        sessionStorage.setItem("username", username);
         setErrors(false);
         alert(`Login Successful `);
         navigate("/user");

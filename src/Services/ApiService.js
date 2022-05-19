@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = "http://10.81.3.109:8080";
+// const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
+const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+
+// const BASE_URL = "http://10.81.3.109:8080"; // charan pc
 //Header
 
 //get
@@ -17,11 +20,14 @@ const UNBOOK_SLOT_API = `${BASE_URL}/appointment/unbook/`;
 const LOGIN_API_URL = `${BASE_URL}/auth/login`;
 ///authenticate`;
 //
+
 const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
 const FORGOT_API_URL = `${BASE_URL}/smsForgot/forgot-password`;
 const VERIFYOTP_API_URL = `${BASE_URL}/smsForgot/verify-otp`;
 const NEWPASSWORD_API_URL = `${BASE_URL}/smsForgot/change-forgot-password`;
 const MAKE_BILL_API_URL = `${BASE_URL}/api/makeBills/16`;
+const ADD_DOCTOR_API_URL = `${BASE_URL}/admin/addDoctor`;
+const ADD_NURSE_API_URL = `${BASE_URL}/admin/addNurse`;
 
 //put
 const CHANGE_PASSWORD = `${BASE_URL}/user/changePassword`;
@@ -82,5 +88,12 @@ export default new (class ApiService {
   }
   unBookSlot(data) {
     return axios.get(`${UNBOOK_SLOT_API}${data}`, auth());
+  }
+
+  addDoctor(data) {
+    return axios.post(`${ADD_DOCTOR_API_URL}`, data, auth());
+  }
+  addNurse(data) {
+    return axios.post(`${ADD_NURSE_API_URL}`, data, auth());
   }
 })();

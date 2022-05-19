@@ -32,15 +32,37 @@ export default function Signup({ type }) {
 
     setErrors(false);
     console.log(data);
-    ApiService.register(data)
-      .then((res) => {
-        console.log(res.data);
-        alert("Registered successfully!");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (type == "Doctor") {
+      ApiService.addDoctor(data)
+        .then((res) => {
+          // console.log(res.data);
+          alert("Doctor account add successfully!");
+          navigate("/user");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (type == "Nurse") {
+      ApiService.addNurse(data)
+        .then((res) => {
+          // console.log(res.data);
+          alert("Doctor account add successfully!");
+          navigate("/user");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      ApiService.register(data)
+        .then((res) => {
+          // console.log(res.data);
+          alert("Registered successfully!");
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   useEffect(() => {
     if (data.password && data.password !== data.confirmPassword) {
@@ -68,6 +90,35 @@ export default function Signup({ type }) {
                   onChange={handleChange}
                 />
               </Form.Group>
+              {type === "Doctor" ? (
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="doctorName">Doctor name</Form.Label>
+                  <Form.Control
+                    name="doctorName"
+                    id="doctorName"
+                    required
+                    type="text"
+                    placeholder="Enter Doctor Name"
+                    defaultValue={data.doctorName}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              ) : type === "Nurse" ? (
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="nurseName">Nurse name</Form.Label>
+                  <Form.Control
+                    name="nurseName"
+                    id="nurseName"
+                    required
+                    type="text"
+                    placeholder="Enter Nurse Name"
+                    defaultValue={data.nurseName}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              ) : (
+                ""
+              )}
               <Form.Group className="mb-3">
                 <Form.Label htmlFor="email">Email</Form.Label>
                 <Form.Control
@@ -81,43 +132,6 @@ export default function Signup({ type }) {
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Row>
-                <Form.Group as={Col} className="mb-2">
-                  <Form.Label htmlFor="password">Password</Form.Label>
-                  <Form.Control
-                    name="password"
-                    id="password"
-                    required
-                    type="password"
-                    placeholder="Enter your password"
-                    // minLength="8"
-                    defaultValue={data.password}
-                    onChange={handleChange}
-                    // pattern="[0-9a-zA-Z][!@#$%^&*-?].{8,14}"
-                  />
-                </Form.Group>
-                <Form.Group as={Col} className="mb-2">
-                  <Form.Label htmlFor="confirmPassword">
-                    Confirm Password
-                  </Form.Label>
-
-                  <Form.Control
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    required
-                    type="password"
-                    placeholder="Enter your password"
-                    // minLength="8"
-                    defaultValue={data.confirmPassword}
-                    onChange={handleChange}
-                    isInvalid={errors}
-                    // pattern="^([@#](?=[^aeiou]{7,13}$)(?=[[:alnum:]]{7,13}$)(?=.*[A-Z]{1,}.*$).+)$"
-                  />
-                  {errors && (
-                    <p className="text-danger mb-1">Password do not match</p>
-                  )}
-                </Form.Group>
-              </Row>
               <Form.Group className="mb-3 checkbox">
                 <Form.Label>Gender : </Form.Label>{" "}
                 <Form.Check
@@ -154,29 +168,40 @@ export default function Signup({ type }) {
                   onChange={handleChange}
                 />
               </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="dateOfBirth">Date of Birth</Form.Label>
+                <Form.Control
+                  name="dob"
+                  id="dateOfBirth"
+                  // required
+                  type="date"
+                  defaultValue={data.dob}
+                  onChange={handleChange}
+                />
+              </Form.Group>
               {type === "Doctor" ? (
                 <Form.Group className="mb-3">
-                  <Form.Label htmlFor="specialist">Specialist</Form.Label>
+                  <Form.Label htmlFor="speciality">Specialist</Form.Label>
                   <Form.Control
-                    name="specialist"
-                    id="specialist"
+                    name="speciality"
+                    id="speciality"
                     required
                     type="text"
-                    placeholder="Enter specialist"
-                    defaultValue={data.specialist}
+                    placeholder="Enter speciality"
+                    defaultValue={data.speciality}
                     onChange={handleChange}
                   />
                 </Form.Group>
               ) : type === "Nurse" ? (
                 <Form.Group className="mb-3">
-                  <Form.Label htmlFor="department">Department</Form.Label>
+                  <Form.Label htmlFor="depart">Department</Form.Label>
                   <Form.Control
-                    name="department"
-                    id="department"
+                    name="depart"
+                    id="depart"
                     required
                     type="text"
                     placeholder="Enter department"
-                    defaultValue={data.department}
+                    defaultValue={data.depart}
                     onChange={handleChange}
                   />
                 </Form.Group>

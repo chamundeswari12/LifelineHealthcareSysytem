@@ -56,7 +56,7 @@ export default function App() {
                 }
               />
               <Route
-                path="NurseSignup"
+                path="nurseSignup"
                 element={
                   <PrivateRoute>
                     <NurseSignup />

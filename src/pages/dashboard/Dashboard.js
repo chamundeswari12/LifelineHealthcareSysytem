@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Admin from "../../components/admin/Admin";
+import Doctor from "../../components/docter/Doctor";
+import Nurse from "../../components/nurse/Nurse";
 
 import SpinnerLoading from "../../components/spinner/Spinner";
 import User from "../../components/user/User";
@@ -16,7 +18,7 @@ export default function Dashboard() {
       .then((res) => {
         console.log(res.data);
         setRole(res.data.authorities[0].authority);
-        localStorage.setItem("user", JSON.stringify(res.data));
+        sessionStorage.setItem("user", JSON.stringify(res.data));
         setIsLoading(false);
       })
       .catch((error) => {
@@ -37,8 +39,12 @@ export default function Dashboard() {
           <User />
         ) : role === "ADMIN" ? (
           <Admin />
+        ) : role === "NURSE" ? (
+          <Nurse />
+        ) : role === "DOCTOR" ? (
+          <Doctor />
         ) : (
-          <h1>Dashboard</h1>
+          ""
         )}
       </div>
     </>

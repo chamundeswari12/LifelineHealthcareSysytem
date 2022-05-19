@@ -13,11 +13,11 @@ export default function DataSelection({ value, onChange }) {
       <Calendar
         // minDate={new Date(2022, 4, 12)}
         // activeStartDate={new Date(2022, 4, 12)}
-        value={[
-          new Date(2022, 4, 12),
-          new Date(2022, 4, 13),
-          // new Date(2022, 0, 6),
-        ]}
+        // value={[
+        //   new Date(2022, 4, 12),
+        //   new Date(2022, 4, 13),
+        //   new Date(2022, 4, 15),
+        // ]}
         onChange={onChange}
         // showDoubleView={true}
         // selectRange={true}

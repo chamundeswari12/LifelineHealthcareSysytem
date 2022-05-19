@@ -10,6 +10,7 @@
   margin: 2px;
   padding: 2px;
   display: flex;
+  flex-direction: column;
 }
 .formateDate {
   margin-top: 10px;
@@ -27,19 +28,19 @@
   /* flex-direction: column; */
 }
 .time {
-  display: flex;
+  /* display: flex; */
   /* padding-right: 10px; */
   /* flex-direction: column; */
 }
 .timeStamp {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   font-weight: 500;
-  flex-direction: column;
+  /* flex-direction: column; */
   margin-top: 2px;
-  max-width: 100px;
-  max-height: 45px;
-  margin-bottom: 10px;
+  /* max-width: 100px; */
+  /* max-height: 45px; */
+  /* margin-bottom: 10px; */
   padding-bottom: 10px;
 }
 
