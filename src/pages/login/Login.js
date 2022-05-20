@@ -23,11 +23,11 @@ export default function Login() {
 
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem("Access_Token", res.data.token);
-
+        localStorage.setItem("Access_Token", res.data.token);
+        // const user = localStorage.getItem('user')
         const username = jwt(res.data.token).sub;
         console.log(username);
-        sessionStorage.setItem("username", username);
+        localStorage.setItem("username", username);
         setErrors(false);
         alert(`Login Successful `);
         navigate("/user");
@@ -42,7 +42,7 @@ export default function Login() {
     <>
       <NavBar />
       <div id="login" className="container-sm ">
-        <h1 className="title text-center">Login</h1>
+        <h1 className="title text-center">Welcome</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
@@ -73,7 +73,7 @@ export default function Login() {
             />
           </Form.Group>
 
-          <Button type="submit" className="btn-login">
+          <Button type="submit" variant="success">
             Login
           </Button>
           {"  "}
@@ -86,7 +86,7 @@ export default function Login() {
           </Link>
           {" / "}
           <Link className="text-center" to="/signup">
-            Create account
+            New User? Signup
           </Link>
         </Form>
       </div>
