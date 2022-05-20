@@ -61,9 +61,10 @@ export default function Models(props) {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+
       // scrollable
     >
       <Modal.Header>
@@ -161,7 +162,7 @@ export default function Models(props) {
                 </div>
               </div>
             </Col>
-            {/* <Row> */}
+            {/* <Row>*/}
             <Col xs={8} className="slotSection">
               {isLoading ? (
                 <SpinnerLoading />

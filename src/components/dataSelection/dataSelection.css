@@ -1,8 +1,13 @@
-/* .calender {
-  justify-content: center;
-  align-items: center;
-} */
+.calender {
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  max-width: fit-content;
+}
 
+.rc_header span {
+  color: rgba(114, 127, 243, 0.9) !important ;
+  font-weight: 500;
+}
 .rc_body-days-of-month .rc_body-cell.rc_highlight:not(.rc_disabled) button {
   border-bottom: none !important;
   background-color: lightgreen;
@@ -11,15 +16,22 @@
 .rc_body-days-of-month .rc_body-cell.rc_today:not(.rc_disabled) button {
   border-bottom: none !important;
 }
-.react-calendar {
-  /* margin: 10px; */
+.rc_body-weekdays_cell {
+  color: rgba(114, 127, 243, 0.9) !important ;
+  font-weight: 500;
+}
+.rc_body-weekdays_cell.rc_wknd {
+  color: var(--rc-color-text-weekend-label) !important;
+}
+/* .react-calendar {
+  
   border: none !important;
-  /* margin: 5%; */
+  
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   border-radius: 5px;
   cursor: pointer;
   font-family: sans-serif;
-}
+} */
 /* .react-calendar button {
   border-radius: 5px;
   margin: 0.1px !important;
