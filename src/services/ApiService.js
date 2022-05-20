@@ -10,7 +10,7 @@ const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 //get
 const ALL_USER_API = `${BASE_URL}/user/getAllUsers`;
 const CURRENT_USER_API = `${BASE_URL}/auth/current-user`;
-///fulldetail`;
+///fulldetails`;
 //
 const GET_SLOT_DETAILS_API = `${BASE_URL}/appointment/get`;
 const BILL_DATA_API = `${BASE_URL}/api/getBill/2/1`;
