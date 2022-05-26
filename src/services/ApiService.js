@@ -1,15 +1,16 @@
 import axios from "axios";
 
-const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
+// const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
-// const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+const BASE_URL = "http://10.81.3.179:2022"; // umer pc
 
 // const BASE_URL = "http://10.81.3.109:8080"; // charan pc
 //Header
 
 //get
-const ALL_USER_API = `${BASE_URL}/user/getAllUsers`;
+const ALL_USER_API = `${BASE_URL}/admin/getAllNormalUsers`;
 const CURRENT_USER_API = `${BASE_URL}/auth/current-user`;
+const ALL_DOCTOR_API = `${BASE_URL}/admin/getAllDoctors`;
 ///fulldetails`;
 //
 const GET_SLOT_DETAILS_API = `${BASE_URL}/appointment/get`;
@@ -95,5 +96,17 @@ export default new (class ApiService {
   }
   addNurse(data) {
     return axios.post(`${ADD_NURSE_API_URL}`, data, auth());
+  }
+  getAllUser(page, rowsPerPage) {
+    return axios.get(
+      `${ALL_USER_API}?pageNumber=${page}&pageSize=${rowsPerPage}`,
+      auth()
+    );
+  }
+  getAllDoctors(page, rowsPerPage) {
+    return axios.get(
+      `${ALL_DOCTOR_API}?pageNumber=${page}&pageSize=${rowsPerPage}`,
+      auth()
+    );
   }
 })();

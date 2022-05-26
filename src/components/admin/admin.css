@@ -1,6 +1,7 @@
 .admin {
   align-items: center;
   margin: auto;
+  max-width: fit-content;
   padding: 20px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }

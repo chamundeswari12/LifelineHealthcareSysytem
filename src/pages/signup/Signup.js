@@ -211,7 +211,7 @@ export default function Signup({ type }) {
               <Button className="btn-signup" type="submit">
                 Signup
               </Button>{" "}
-              <Button as={Link} to="/" variant="danger">
+              <Button as={Link} to="/user" variant="danger">
                 Cancel
               </Button>
             </Form>

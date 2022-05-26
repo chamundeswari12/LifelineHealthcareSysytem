@@ -49,3 +49,9 @@
 .view {
   cursor: pointer;
 }
+.css-levciy-MuiTablePagination-displayedRows {
+  padding-top: 15px;
+}
+.css-pdct74-MuiTablePagination-selectLabel {
+  padding-top: 15px;
+}

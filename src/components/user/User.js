@@ -2,7 +2,7 @@ import Tables from "../table/Tables";
 import "./user.css";
 
 export default function User() {
-  const rows = [
+  const userData = [
     {
       id: 1,
       doctorName: "Doc 01",
@@ -59,7 +59,7 @@ export default function User() {
     <div id="user">
       <h1>User dashboard</h1>
       <input className="search" type="text" placeholder="Search" />
-      <Tables rows={rows} />
+      <Tables userData={userData} />
     </div>
   );
 }
