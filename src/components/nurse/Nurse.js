@@ -12,10 +12,10 @@ export default function Nurse() {
             Appointment
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Link className="m-2" to="/user/profile" id="nav-link">
+            <Link className="m-2" to="/user/currentAppointment" id="nav-link">
               Current Appointments
             </Link>
-            <Link className="m-2" to="/user/settings" id="nav-link">
+            <Link className="m-2" to="/user/upcomingAppointment" id="nav-link">
               Upcoming Appointments
             </Link>
           </Dropdown.Menu>
