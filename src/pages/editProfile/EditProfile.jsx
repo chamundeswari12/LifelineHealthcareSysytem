@@ -125,8 +125,8 @@ export default function EditProfile() {
                     <Form.Label htmlFor="phoneNo">Phone Number</Form.Label>
                     <Form.Control
                       type="text"
-                      pattern="[+91][0-9].{11}"
-                      maxLength={13}
+                      // pattern="[+91][0-9].{11}"
+                      // maxLength={13}
                       title="enter phone number like +919999999999"
                       id="phoneNo"
                       name="phoneNo"

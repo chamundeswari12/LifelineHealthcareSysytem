@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
+const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
-const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+// const BASE_URL = "http://10.81.3.179:2022"; // umer pc
 
 // const BASE_URL = "http://10.81.3.109:8080"; // charan pc
 //Header

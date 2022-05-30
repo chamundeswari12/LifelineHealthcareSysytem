@@ -2,9 +2,10 @@
   /* display: flex;
   flex-flow: row wrap; */
   border-radius: 5px;
+
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   /* overflow: wrap; */
-  /* max-width: 330px; */
+  max-width: fit-content;
   /* margin-left: 0; */
   /* margin-right: 10px; */
   margin: 2px;
@@ -24,14 +25,14 @@
 .date {
   margin: 2px;
   padding: 2px;
-  display: flex;
-  /* flex-direction: column; */
-}
-.time {
   /* display: flex; */
-  /* padding-right: 10px; */
   /* flex-direction: column; */
 }
+/* .time {
+  display: flex;
+  padding-right: 10px;
+  flex-direction: column;
+} */
 .timeStamp {
   /* display: flex; */
   /* flex-wrap: wrap; */
