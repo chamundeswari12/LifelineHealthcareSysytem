@@ -20,7 +20,6 @@ export default function Login() {
     const loginData = { username: username, password: password };
 
     ApiService.login(loginData)
-
       .then((res) => {
         console.log(res);
         sessionStorage.setItem("Access_Token", res.data.token);

@@ -7,6 +7,7 @@ export const AboutUs = () => {
       <NavBar />
       <div className="aboutus">
         <h1>AboutUs under construction</h1>
+        
       </div>
     </>
   );

@@ -106,14 +106,14 @@ export default function BillDownlaod() {
                     <h4 className="title">Doctor Details:</h4>
                     <h5 className="title">Name: Doctor</h5>
                     <p>Specialist Cardiologists</p>
-                  </div>
+                  </div>                                                         
                 </div>
                 <h4 className="subTitle">Assigned Medicines</h4>
                 <Tables rows={rows} bill={true} />
 
-                {/* {rows.map((t) => {
+                {/* {rows.map((t) => {                                                                                                                                                                                                                            
               sum = sum + t.qty * t.unitPrice;
-              console.log(sum);
+              console.log(sum);                                             
             })} */}
                 {/* <div className="amount">
               <div>
@@ -136,7 +136,7 @@ export default function BillDownlaod() {
               <br className="line" />
               Consulting fees=500
               <br className="line" />
-              {sum + 500}
+              {sum + 500}                                                                                                 
               <br className="line" />
               GST@18%={(sum + 500) * 0.18}
               <br className="line" />
