@@ -21,7 +21,7 @@ export default function Nurse() {
           </Dropdown.Menu>
         </Dropdown>{" "}
         <Button className="btn-signup" as={Link} to="/user/nursesignup">
-          Patient data
+          Admitted patients
         </Button>
       </div>
     </div>

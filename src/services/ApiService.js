@@ -2,15 +2,16 @@ import axios from "axios";
 
 // const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
-const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+// const BASE_URL = "http://10.81.3.179:2022"; // umer pc
 
-// const BASE_URL = "http://10.81.3.109:8080"; // charan pc
+const BASE_URL = "http://10.81.3.30:9090"; // charan pc
 //Header
 
 //get
 const ALL_USER_API = `${BASE_URL}/admin/getAllNormalUsers`;
 const CURRENT_USER_API = `${BASE_URL}/auth/current-user`;
 const ALL_DOCTOR_API = `${BASE_URL}/admin/getAllDoctors`;
+const VIEW_CURRENT_APPOINTMENT_API = `${BASE_URL}/api/currentDate`;
 ///fulldetails`;
 //
 const GET_SLOT_DETAILS_API = `${BASE_URL}/appointment/get`;
@@ -108,5 +109,8 @@ export default new (class ApiService {
       `${ALL_DOCTOR_API}?pageNumber=${page}&pageSize=${rowsPerPage}`,
       auth()
     );
+  }
+  getCurrentAppointment() {
+    return axios.get(`${VIEW_CURRENT_APPOINTMENT_API}`, auth());
   }
 })();

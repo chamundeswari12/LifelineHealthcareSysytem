@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Admin from "../../components/admin/Admin";
-import Doctor from "../../components/docter/Doctor";
+import Doctor from "../../components/doctor/Doctor";
 import Nurse from "../../components/nurse/Nurse";
 
 import SpinnerLoading from "../../components/spinner/Spinner";
