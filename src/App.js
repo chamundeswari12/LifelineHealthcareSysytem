@@ -25,6 +25,7 @@ import AllNurseList from "./pages/allNurseList/AllNurseList";
 import AllUserList from "./pages/allUserList/AllUserList";
 import UpcomingAppointment from "./pages/upcomingAppointment/UpcomingAppointment";
 import CurrentAppointment from "./pages/currentAppointment/CurrentAppointment";
+import AddAppointment from "./pages/addAppointment/AddAppointment";
 
 export default function App() {
   return (
@@ -81,6 +82,14 @@ export default function App() {
                 element={
                   <PrivateRoute>
                     <UpcomingAppointment />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="addAppointment"
+                element={
+                  <PrivateRoute>
+                    <AddAppointment />
                   </PrivateRoute>
                 }
               />
