@@ -2,8 +2,10 @@ import axios from "axios";
 
 // const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
-const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+// const BASE_URL = "http://10.81.3.179:2022"; // umer pc
 
+/* A constant variable that is used to store the URL of the server. */
+const BASE_URL = "http://10.81.3.116:8080"; // usha pc
 // const BASE_URL = "http://10.81.3.30:9090"; // charan pc
 //Header
 
@@ -25,7 +27,8 @@ const LOGIN_API_URL = `${BASE_URL}/auth/login`;
 ///authenticate`;
 //
 
-const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
+// const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
+const REGISTER_API_URL = `${BASE_URL}/api/register`;
 const FORGOT_API_URL = `${BASE_URL}/smsForgot/forgot-password`;
 const VERIFYOTP_API_URL = `${BASE_URL}/smsForgot/verify-otp`;
 const NEWPASSWORD_API_URL = `${BASE_URL}/smsForgot/change-forgot-password`;
