@@ -32,6 +32,7 @@ export default function Tables({ type, bill, userData }) {
   };
 
   const [modalShow, setModalShow] = useState(false);
+  const [view, setView] = useState();
   const [data, setData] = useState({});
   const navigate = useNavigate();
   const handleData = (row) => {
@@ -42,6 +43,11 @@ export default function Tables({ type, bill, userData }) {
     setData(row);
   };
   const handleBook = (row) => {
+    if (["upcomingAppointment", "appointment"].includes(type)) {
+      setModalShow(true);
+      setData(row);
+      setView("patientdata");
+    }
     if (row.status === "booked") {
       navigate("/bill");
     }
@@ -56,18 +62,49 @@ export default function Tables({ type, bill, userData }) {
       setRows(userData);
       setIsLoading(false);
     }
-    // console.log(type);
+    if (["upcomingAppointment"].includes(type)) {
+      ApiService.getUpcomingAppointment()
+        .then((res) => {
+          console.log(res.data);
+
+          // alert(`Login Successful `);
+          // setAppointments(res.data);
+          setRows(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // console.log(userData);
+      setIsLoading(false);
+    }
+
+    if (["appointment"].includes(type)) {
+      ApiService.getCurrentAppointment()
+        .then((res) => {
+          console.log(res.data);
+
+          // alert(`Login Successful `);
+          // setAppointments(res.data);
+          setRows(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // console.log(userData);
+      setIsLoading(false);
+    }
+    console.log(rows);
     if (type == "doctor") {
       ApiService.getAllDoctors(page, rowsPerPage)
         .then((res) => {
           console.table(res.data);
-          // setRowsPerPage(res.data.User.length);
+
           setTotalItems(res.data.totalItems);
-          // setData(res.data);
+
           setRows(res.data.User);
-          // setUser(res.data.filter((d) => d.roleName.includes("USER")));
-          // setDoctor(res.data.filter((d) => d.roleName.includes("DOCTOR")));
-          // setNurse(res.data.filter((d) => d.roleName.includes("NURSE")));
+
           setIsLoading(false);
         })
         .catch((error) => {
@@ -78,13 +115,11 @@ export default function Tables({ type, bill, userData }) {
       ApiService.getAllUser(page, rowsPerPage)
         .then((res) => {
           console.table(res.data);
-          // setRowsPerPage(res.data.User.length);
+
           setTotalItems(res.data.totalItems);
-          // setData(res.data);
+
           setRows(res.data.User);
-          // setUser(res.data.filter((d) => d.roleName.includes("USER")));
-          // setDoctor(res.data.filter((d) => d.roleName.includes("DOCTOR")));
-          // setNurse(res.data.filter((d) => d.roleName.includes("NURSE")));
+
           setIsLoading(false);
         })
         .catch((error) => {
@@ -95,13 +130,11 @@ export default function Tables({ type, bill, userData }) {
       ApiService.getAllUser(page, rowsPerPage)
         .then((res) => {
           console.table(res.data);
-          // setRowsPerPage(res.data.User.length);
+
           setTotalItems(res.data.totalItems);
-          // setData(res.data);
+
           setRows(res.data.User);
-          // setUser(res.data.filter((d) => d.roleName.includes("USER")));
-          // setDoctor(res.data.filter((d) => d.roleName.includes("DOCTOR")));
-          // setNurse(res.data.filter((d) => d.roleName.includes("NURSE")));
+
           setIsLoading(false);
         })
         .catch((error) => {
@@ -115,6 +148,7 @@ export default function Tables({ type, bill, userData }) {
       <Models
         data={data}
         show={modalShow}
+        view={view}
         onHide={() => {
           setModalShow(false);
           setData({});
@@ -167,7 +201,6 @@ export default function Tables({ type, bill, userData }) {
                     <TableCell className="tableCell">
                       <b>First Name</b>
                     </TableCell>
-                    {/* <TableCell className="tableCell">View Profile</TableCell> */}
                     <TableCell className="tableCell">
                       <b>Last name</b>
                     </TableCell>
@@ -194,7 +227,6 @@ export default function Tables({ type, bill, userData }) {
                     <TableCell className="tableCell">
                       <b>First Name</b>
                     </TableCell>
-                    {/* <TableCell className="tableCell">View Profile</TableCell> */}
                     <TableCell className="tableCell">
                       <b>Last name</b>
                     </TableCell>
@@ -221,7 +253,6 @@ export default function Tables({ type, bill, userData }) {
                     <TableCell className="tableCell">
                       <b>First Name</b>
                     </TableCell>
-                    {/* <TableCell className="tableCell">View Profile</TableCell> */}
                     <TableCell className="tableCell">
                       <b>Last name</b>
                     </TableCell>
@@ -233,6 +264,36 @@ export default function Tables({ type, bill, userData }) {
                     </TableCell>
                     <TableCell className="tableCell">
                       <b>Phone number</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+              ) : ["upcomingAppointment", "appointment"].includes(type) ? (
+                <TableHead className="thead">
+                  <TableRow>
+                    <TableCell className="tableCell">
+                      <b>Sl.no</b>
+                    </TableCell>
+                    {["upcomingAppointment"].includes(type) ? (
+                      <TableCell className="tableCell">
+                        <b>Slot Date</b>
+                      </TableCell>
+                    ) : (
+                      ""
+                    )}
+                    <TableCell className="tableCell">
+                      <b>Slot Time</b>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      <b>Patient Name</b>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      <b>Email</b>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      <b>Phone number</b>
+                    </TableCell>
+                    <TableCell className="tableCell">
+                      <b>Profile</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -248,7 +309,7 @@ export default function Tables({ type, bill, userData }) {
                     <TableCell className="tableCell">
                       <b>Specialist</b>
                     </TableCell>
-                    {/* <TableCell className="tableCell">View Profile</TableCell> */}
+
                     <TableCell className="tableCell">
                       <b>Date</b>
                     </TableCell>
@@ -264,7 +325,6 @@ export default function Tables({ type, bill, userData }) {
                   </TableRow>
                 </TableHead>
               )}
-
               <TableBody>
                 {bill === true
                   ? rows.map((row) => (
@@ -302,7 +362,6 @@ export default function Tables({ type, bill, userData }) {
                               <img
                                 src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                                 alt=""
-                                // scr2="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                                 className="image"
                               />
                               {row.userId}
@@ -392,14 +451,8 @@ export default function Tables({ type, bill, userData }) {
                           </div>
                         </TableCell>
                         <TableCell className="tableCell">
-                          {row.firstName}
+                          {row.slotTime}
                         </TableCell>
-                        {/* <TableCell
-                  className="tableCell view"
-                  onClick={() => handleData(row)}
-                >
-                  View Profile
-                </TableCell> */}
                         <TableCell className="tableCell">
                           {row.lastName}
                         </TableCell>
@@ -411,6 +464,47 @@ export default function Tables({ type, bill, userData }) {
                         </TableCell>
                         <TableCell className="tableCell">
                           <span>{row.phoneNo}</span>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  : ["upcomingAppointment", "appointment"].includes(type)
+                  ? rows.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="tableCell">{`${
+                          index + 1
+                        }`}</TableCell>
+                        {["upcomingAppointment"].includes(type) ? (
+                          <>
+                            <TableCell className="tableCell">
+                              {row.doctorAvailableDate}
+                            </TableCell>
+                            <TableCell className="tableCell">
+                              {row.slotTime}
+                            </TableCell>
+                          </>
+                        ) : (
+                          <TableCell className="tableCell">
+                            {row.slotTime}
+                          </TableCell>
+                        )}
+
+                        <TableCell className="tableCell">
+                          {row.registrationEntity.firstName}{" "}
+                          {row.registrationEntity.lastName}
+                        </TableCell>
+                        <TableCell className="tableCell">
+                          {row.registrationEntity.username}
+                        </TableCell>
+                        <TableCell className="tableCell">
+                          <span>{row.registrationEntity.phoneNo}</span>
+                        </TableCell>
+                        <TableCell className="tableCell">
+                          <span
+                            className={`Offline view`}
+                            onClick={() => handleBook(row)}
+                          >
+                            View
+                          </span>
                         </TableCell>
                       </TableRow>
                     ))
@@ -430,12 +524,6 @@ export default function Tables({ type, bill, userData }) {
                         <TableCell className="tableCell">
                           {row.specialist}
                         </TableCell>
-                        {/* <TableCell
-                  className="tableCell view"
-                  onClick={() => handleData(row)}
-                >
-                  View Profile
-                </TableCell> */}
                         <TableCell className="tableCell">{row.date}</TableCell>
                         <TableCell className="tableCell">
                           {row.amount}
@@ -477,7 +565,6 @@ export default function Tables({ type, bill, userData }) {
                     <>
                       <TableRow>
                         <TableCell rowSpan={5} colSpan={6} />
-
                         <TableCell>Subtotal</TableCell>
                         <TableCell align="right">{sum}</TableCell>
                       </TableRow>

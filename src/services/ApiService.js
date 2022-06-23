@@ -2,15 +2,20 @@ import axios from "axios";
 
 // const BASE_URL = "http://10.81.3.109:8080"; // Venkat pc
 
-const BASE_URL = "http://10.81.3.179:2022"; // umer pc
+// const BASE_URL = "http://10.81.3.179:2022"; // umer pc
 
-// const BASE_URL = "http://10.81.3.109:8080"; // charan pc
+/* A constant variable that is used to store the URL of the server. */
+const BASE_URL = "http://10.81.3.116:8080"; // usha pc
+// const BASE_URL = "http://10.81.3.30:9090"; // charan pc
 //Header
 
 //get
 const ALL_USER_API = `${BASE_URL}/admin/getAllNormalUsers`;
 const CURRENT_USER_API = `${BASE_URL}/auth/current-user`;
 const ALL_DOCTOR_API = `${BASE_URL}/admin/getAllDoctors`;
+const VIEW_CURRENT_APPOINTMENT_API = `${BASE_URL}/api/currentDate`;
+const VIEW_UPCOMING_APPOINTMENT_API = `${BASE_URL}/api/upcomingappoinments`;
+const VIEW_PATIENT_DETIALS_API = `${BASE_URL}/api/findProfile/`;
 ///fulldetails`;
 //
 const GET_SLOT_DETAILS_API = `${BASE_URL}/appointment/get`;
@@ -22,7 +27,8 @@ const LOGIN_API_URL = `${BASE_URL}/auth/login`;
 ///authenticate`;
 //
 
-const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
+// const REGISTER_API_URL = `${BASE_URL}/user/signUp`;
+const REGISTER_API_URL = `${BASE_URL}/api/register`;
 const FORGOT_API_URL = `${BASE_URL}/smsForgot/forgot-password`;
 const VERIFYOTP_API_URL = `${BASE_URL}/smsForgot/verify-otp`;
 const NEWPASSWORD_API_URL = `${BASE_URL}/smsForgot/change-forgot-password`;
@@ -108,5 +114,14 @@ export default new (class ApiService {
       `${ALL_DOCTOR_API}?pageNumber=${page}&pageSize=${rowsPerPage}`,
       auth()
     );
+  }
+  getCurrentAppointment() {
+    return axios.get(`${VIEW_CURRENT_APPOINTMENT_API}`, auth());
+  }
+  getUpcomingAppointment() {
+    return axios.get(`${VIEW_UPCOMING_APPOINTMENT_API}`, auth());
+  }
+  getPatientDetails(id) {
+    return axios.get(`${VIEW_PATIENT_DETIALS_API}${id}`, auth());
   }
 })();

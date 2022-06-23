@@ -69,7 +69,8 @@ export default function Models(props) {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter" className="title">
-          {props.data.doctorName}
+          {`${props.data?.registrationEntity?.firstName} `}
+          {props.data?.registrationEntity?.lastName} {props.data?.doctorName}
         </Modal.Title>
         <Button className="btnClose" onClick={handleClose}>
           X
@@ -77,8 +78,8 @@ export default function Models(props) {
       </Modal.Header>
       <Modal.Body>
         <form>
-          <Row className="profiledata">
-            <Col xs={4}>
+          {props.view === "patientdata" ? (
+            <Row className="profiledata">
               <img
                 className="profile-img"
                 src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
@@ -87,9 +88,7 @@ export default function Models(props) {
 
               <div className="row">
                 <div className="profile-head">
-                  <h5 className="name">
-                    {props.data.firstName} {props.data.lastName}
-                  </h5>
+                  <h5 className="name">Patient Details</h5>
                   <h5 className="role"></h5>
                   <p className="profile-rating mt-3 mb-3"></p>
                   <Tabs
@@ -100,21 +99,104 @@ export default function Models(props) {
                     <Tab eventKey="about-us" title="About">
                       <Row>
                         <Col>
-                          <p className="titleName">Doctor name</p>
+                          <p className="titleName">Patient name</p>
                         </Col>
                         <Col>
-                          <p className="titleValue">{props.data.doctorName}</p>
+                          <p className="titleValue">
+                            {`${props.data?.registrationEntity?.firstName} `}
+                            {props.data?.registrationEntity?.lastName}
+                          </p>
                         </Col>
                       </Row>
                       <Row>
                         <Col>
-                          <p className="titleName">Specialist</p>
+                          <p className="titleName">Email</p>
                         </Col>
                         <Col>
-                          <p className="titleValue">{props.data.specialist}</p>
+                          <p className="titleValue">
+                            {props.data?.registrationEntity?.username}
+                          </p>
                         </Col>
                       </Row>
-                      {/* <Row>
+                      <Row>
+                        <Col>
+                          <p className="titleName">Phone Number</p>
+                        </Col>
+                        <Col>
+                          <p className="titleValue">
+                            {props.data?.registrationEntity?.phoneNo}
+                          </p>
+                        </Col>
+                      </Row>
+
+                      <Row>
+                        <Col>
+                          <p className="titleName">Gender</p>
+                        </Col>
+                        <Col>
+                          <p className="titleValue">
+                            {props.data?.registrationEntity?.gender}
+                          </p>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <p className="titleName">Date of Birth</p>
+                        </Col>
+                        <Col>
+                          <p className="titleValue">
+                            {props.data?.registrationEntity?.dob}
+                          </p>
+                        </Col>
+                      </Row>
+                    </Tab>
+                  </Tabs>
+                </div>
+              </div>
+            </Row>
+          ) : (
+            <Row className="profiledata">
+              <Col xs={4}>
+                <img
+                  className="profile-img"
+                  src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  alt="profile"
+                />
+
+                <div className="row">
+                  <div className="profile-head">
+                    <h5 className="name">
+                      {props.data.firstName} {props.data.lastName}
+                    </h5>
+                    <h5 className="role"></h5>
+                    <p className="profile-rating mt-3 mb-3"></p>
+                    <Tabs
+                      defaultActiveKey="about-us"
+                      id="uncontrolled-tab-example"
+                      className="mb-3"
+                    >
+                      <Tab eventKey="about-us" title="About">
+                        <Row>
+                          <Col>
+                            <p className="titleName">Doctor name</p>
+                          </Col>
+                          <Col>
+                            <p className="titleValue">
+                              {props.data.doctorName}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                            <p className="titleName">Specialist</p>
+                          </Col>
+                          <Col>
+                            <p className="titleValue">
+                              {props.data.specialist}
+                            </p>
+                          </Col>
+                        </Row>
+                        {/* <Row>
                         <Col>
                           <p className="titleName">Payment method</p>
                         </Col>
@@ -122,16 +204,16 @@ export default function Models(props) {
                           <p className="titleValue">{props.data.method}</p>
                         </Col>
                       </Row> */}
-                      <Row>
-                        <Col>
-                          <p className="titleName">Fee</p>
-                        </Col>
-                        <Col>
-                          <p className="titleValue">{props.data.amount}</p>
-                        </Col>
-                      </Row>
+                        <Row>
+                          <Col>
+                            <p className="titleName">Fee</p>
+                          </Col>
+                          <Col>
+                            <p className="titleValue">{props.data.amount}</p>
+                          </Col>
+                        </Row>
 
-                      {/* <Row>
+                        {/* <Row>
                         <Col>
                           <p className="titleName">Phone Number</p>
                         </Col>
@@ -139,7 +221,7 @@ export default function Models(props) {
                           <p className="titleValue">{props.data.phoneNo}</p>
                         </Col>
                       </Row> */}
-                      {/* <Row>
+                        {/* <Row>
                         <Col>
                           <p className="titleName">Gender</p>
                         </Col>
@@ -147,8 +229,8 @@ export default function Models(props) {
                           <p className="titleValue">{props.data.gender}</p>
                         </Col>
                       </Row> */}
-                    </Tab>
-                    {/* <Tab eventKey="time-line" title="Time Line">
+                      </Tab>
+                      {/* <Tab eventKey="time-line" title="Time Line">
                       <Row>
                         <Col>
                           <p className="titleName">Under construction</p>
@@ -158,28 +240,29 @@ export default function Models(props) {
                         </Col>
                       </Row>
                     </Tab> */}
-                  </Tabs>
+                    </Tabs>
+                  </div>
                 </div>
-              </div>
-            </Col>
-            {/* <Row>*/}
-            <Col xs={8} className="slotSection">
-              {isLoading ? (
-                <SpinnerLoading />
-              ) : (
-                <>
-                  <DataSelection
-                    className="dateSelection"
-                    value={value}
-                    onChange={onChange}
-                    isHighlight={isHighlight}
-                  />
-                  {slot ? <Slot value={value} data={data} /> : ""}
-                </>
-              )}
-            </Col>
-            {/* </Row> */}
-          </Row>
+              </Col>
+              {/* <Row>*/}
+              <Col xs={8} className="slotSection">
+                {isLoading ? (
+                  <SpinnerLoading />
+                ) : (
+                  <>
+                    <DataSelection
+                      className="dateSelection"
+                      value={value}
+                      onChange={onChange}
+                      isHighlight={isHighlight}
+                    />
+                    {slot ? <Slot value={value} data={data} /> : ""}
+                  </>
+                )}
+              </Col>
+              {/* </Row> */}
+            </Row>
+          )}
         </form>
       </Modal.Body>
       {/* <Modal.Footer>
